@@ -1,0 +1,6 @@
+---
+# defaults file for pyenv
+pyenv_owner: "$USER"
+pyenv_path: "$HOME/pyenv"
+pyenv_python_versions:
+  - 3.4.0

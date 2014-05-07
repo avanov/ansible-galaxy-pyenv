@@ -1,0 +1,38 @@
+---
+- name: Install development packages
+  apt:  pkg={{ item }} state=present
+  with_items:
+    - libssl-dev
+    - libbz2-dev
+    - libsqlite3-dev
+
+- name: Install PyEnv
+  sudo: no
+  git:  repo=git://github.com/yyuu/pyenv.git
+        dest={{ pyenv_path }}
+
+- name: Install PyEnv-virtualenv plugin
+  sudo: no
+  git:  repo=git://github.com/yyuu/pyenv-virtualenv.git
+        dest="{{ pyenv_path }}/plugins/pyenv-virtualenv"
+
+- name: Setup PyEnv step 1
+  sudo: no
+  template: src=".pyenvrc.j2"
+            dest="{{ home }}/.pyenvrc"
+            owner={{ instance_owner }}
+            group={{ instance_owner }}
+            mode=0644
+
+- name: Setup PyEnv step 2
+  sudo: no
+  lineinfile: dest="{{ home }}/.bashrc"
+              regexp="\.pyenvrc$"
+              line="source $HOME/.pyenvrc"
+              state=present
+
+- name: Install Python {{ pyenv_python_version }}
+  sudo: no
+  shell: . $HOME/.pyenvrc && pyenv install {{ item }}
+         creates="{{ pyenv_path }}/versions/{{ item }}/bin/python"
+  with_items: "{{ pyenv_python_versions }}"
