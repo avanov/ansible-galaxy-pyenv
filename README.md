@@ -1,5 +1,5 @@
-Role Name
-========
+avanov.pyenv
+============
 
 Ansible Galaxy role for [pyenv](https://github.com/yyuu/pyenv) on Ubuntu.
 
