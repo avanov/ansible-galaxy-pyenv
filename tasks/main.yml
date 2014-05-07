@@ -19,16 +19,16 @@
 - name: Setup PyEnv step 1
   sudo: no
   template: src=".pyenvrc.j2"
-            dest="{{ home }}/.pyenvrc"
-            owner={{ instance_owner }}
-            group={{ instance_owner }}
+            dest="{{ pyenv_path }}/.pyenvrc"
+            owner={{ pyenv_owner }}
+            group={{ pyenv_owner }}
             mode=0644
 
 - name: Setup PyEnv step 2
   sudo: no
-  lineinfile: dest="{{ home }}/.bashrc"
+  lineinfile: dest="/home/{{ pyenv_owner }}/.bashrc"
               regexp="\.pyenvrc$"
-              line="source $HOME/.pyenvrc"
+              line="source {{ pyenv_path }}/.pyenvrc"
               state=present
 
 - name: Install Python {{ pyenv_python_version }}
