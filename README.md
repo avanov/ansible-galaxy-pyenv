@@ -3,6 +3,12 @@ avanov.pyenv
 
 Ansible Galaxy role for [pyenv](https://github.com/yyuu/pyenv) on Ubuntu.
 
+Install it with the following command:
+
+```bash
+$ ansible-galaxy install avanov.pyenv
+```
+
 Requirements
 ------------
 
