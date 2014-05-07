@@ -11,9 +11,11 @@ None
 Role Variables
 --------------
 
-* ``pyenv_owner``
-* ``pyenv_path``
-* ``pyenv_python_versions``
+Here is the list of all variables and their default values:
+
+* ``pyenv_path: "{{ ansible_env.HOME }}/pyenv"``
+* ``pyenv_owner: "{{ ansible_env.USER }}"``
+* ``pyenv_python_versions: ["3.4.0"]``
 
 
 Dependencies
@@ -26,7 +28,10 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - { role: pyenv }
+         - {role: avanov.pyenv,
+            pyenv_path: "{{ home }}/pyenv",
+            pyenv_owner: "{{ instance_owner }}",
+            pyenv_python_versions: ["3.4.0", "2.7.6"]}
 
 License
 -------
