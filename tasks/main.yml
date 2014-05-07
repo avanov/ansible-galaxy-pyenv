@@ -37,3 +37,9 @@
   shell: . {{ pyenv_path }}/.pyenvrc && pyenv install {{ item }}
          creates="{{ pyenv_path }}/versions/{{ item }}/bin/python"
   with_items: pyenv_python_versions
+
+- name: Create virtual environments
+  sudo: no
+  shell: . {{ pyenv_path }}/.pyenvrc && pyenv virtualenv {{ item.py_version }} {{ item.venv_name }}
+         creates="{{ pyenv_path }}/versions/{{ item.venv_name }}/bin/python"
+  with_items: pyenv_virtualenvs

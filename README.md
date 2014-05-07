@@ -16,6 +16,7 @@ Here is the list of all variables and their default values:
 * ``pyenv_path: "{{ ansible_env.HOME }}/pyenv"``
 * ``pyenv_owner: "{{ ansible_env.USER }}"``
 * ``pyenv_python_versions: ["3.4.0"]``
+* ``pyenv_virtualenvs: [{ venv_name: "latest", py_version: "3.4.0" }]``
 
 
 Dependencies
