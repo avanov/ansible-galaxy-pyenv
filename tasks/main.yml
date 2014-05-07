@@ -1,10 +1,11 @@
 ---
-- name: Install development packages
+- name: Install development packages necessary for building Python
   apt:  pkg={{ item }} state=present
   with_items:
     - libssl-dev
     - libbz2-dev
     - libsqlite3-dev
+    - libreadline-dev
 
 - name: Install PyEnv
   sudo: no
