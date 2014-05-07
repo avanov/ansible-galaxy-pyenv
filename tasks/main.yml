@@ -16,7 +16,7 @@
   git:  repo=git://github.com/yyuu/pyenv-virtualenv.git
         dest="{{ pyenv_path }}/plugins/pyenv-virtualenv"
 
-- name: Setup PyEnv step 1
+- name: Install .pyenvrc
   sudo: no
   template: src=".pyenvrc.j2"
             dest="{{ pyenv_path }}/.pyenvrc"
@@ -24,7 +24,7 @@
             group={{ pyenv_owner }}
             mode=0644
 
-- name: Setup PyEnv step 2
+- name: Modify .bashrc
   sudo: no
   lineinfile: dest="/home/{{ pyenv_owner }}/.bashrc"
               regexp="\.pyenvrc$"
