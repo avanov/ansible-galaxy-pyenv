@@ -14,12 +14,12 @@
 
 - name: Install PyEnv
   sudo: no
-  git:  repo=git://github.com/yyuu/pyenv.git
+  git:  repo=https://github.com/yyuu/pyenv.git
         dest={{ pyenv_path }}
 
 - name: Install PyEnv-virtualenv plugin
   sudo: no
-  git:  repo=git://github.com/yyuu/pyenv-virtualenv.git
+  git:  repo=https://github.com/yyuu/pyenv-virtualenv.git
         dest="{{ pyenv_path }}/plugins/pyenv-virtualenv"
 
 - name: Install .pyenvrc
