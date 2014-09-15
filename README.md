@@ -39,14 +39,14 @@ Example Playbook
            pyenv_path: "{{ home }}/pyenv"
            pyenv_owner: "{{ instance_owner }}"
            pyenv_python_versions:
-             - "3.4.0"
-             - "2.7.6"
+             - "3.4.1"
+             - "2.7.8"
            pyenv_virtualenvs:
              - venv_name: "latest_v3"
-               py_version: "3.4.0"
+               py_version: "3.4.1"
                
              - venv_name: "latest_v2"
-               py_version: "2.7.6"
+               py_version: "2.7.8"
 
 License
 -------
