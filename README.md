@@ -35,13 +35,18 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - {role: avanov.pyenv,
-            pyenv_path: "{{ home }}/pyenv",
-            pyenv_owner: "{{ instance_owner }}",
-            pyenv_python_versions: ["3.4.0", "2.7.6"],
-            pyenv_virtualenvs: [
-              { venv_name: "latest_v3", py_version: "3.4.0" },
-              { venv_name: "latest_v2", py_version: "2.7.6" }]}
+         - role: avanov.pyenv
+           pyenv_path: "{{ home }}/pyenv"
+           pyenv_owner: "{{ instance_owner }}"
+           pyenv_python_versions:
+             - "3.4.0"
+             - "2.7.6"
+           pyenv_virtualenvs:
+             - venv_name: "latest_v3"
+               py_version: "3.4.0"
+               
+             - venv_name: "latest_v2"
+               py_version: "2.7.6"
 
 License
 -------
