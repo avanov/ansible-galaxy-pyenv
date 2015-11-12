@@ -29,12 +29,14 @@
   git:
     repo: https://github.com/yyuu/pyenv.git
     dest: "{{ pyenv_path }}"
+    update: {{should_update_existing_pyenv_install}}
 
 - name: Install PyEnv-virtualenv plugin
   sudo: no
   git:
     repo: https://github.com/yyuu/pyenv-virtualenv.git
     dest: "{{ pyenv_path }}/plugins/pyenv-virtualenv"
+    update: {{should_update_existing_pyenv_install}}
 
 - name: Install .pyenvrc
   sudo: no
