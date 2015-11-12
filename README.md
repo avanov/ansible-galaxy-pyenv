@@ -23,7 +23,7 @@ Here is the list of all variables and their default values:
 * ``pyenv_owner: "{{ ansible_env.USER }}"``
 * ``pyenv_python_versions: ["3.4.1"]``
 * ``pyenv_virtualenvs: [{ venv_name: "latest", py_version: "3.4.1" }]``
-* ``should_update_existing_pyenv_install: no``
+* ``pyenv_should_update_existing_pyenv_install: no``
 
 
 Dependencies
