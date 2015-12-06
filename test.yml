@@ -2,4 +2,7 @@
   vars_files:
     - 'defaults/main.yml'
   tasks:
+    - name: Output relevant vars
+      command: echo "Owner: {{ pyenv_owner }}"
+
     - include: 'tasks/main.yml'
