@@ -4,7 +4,5 @@
   tasks:
     - debug:
         msg: "Owner: {{ pyenv_owner }}"
-    - debug:
-        msg: "{{ pyenv_owner }}" == 'root'
 
     - include: 'tasks/main.yml'
