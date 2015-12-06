@@ -25,21 +25,18 @@
     - libreadline-dev
 
 - name: Install PyEnv
-  become: "'$pyenv_owner' == 'root'"
   git:
     repo: https://github.com/yyuu/pyenv.git
     dest: "{{ pyenv_path }}"
     update: "{{pyenv_update_git_install}}"
 
 - name: Install PyEnv-virtualenv plugin
-  become: "'$pyenv_owner' == 'root'"
   git:
     repo: https://github.com/yyuu/pyenv-virtualenv.git
     dest: "{{ pyenv_path }}/plugins/pyenv-virtualenv"
     update: "{{pyenv_update_git_install}}"
 
 - name: Install .pyenvrc
-  sudo: "'$pyenv_owner' == 'root'"
   template:
     src: ".pyenvrc.j2"
     dest: "{{ pyenv_path }}/.pyenvrc"
@@ -48,20 +45,17 @@
     mode: "0644"
 
 - name: Modify .bashrc
-  become: "'$pyenv_owner' == 'root'"
   lineinfile: dest="{{ ansible_env.HOME }}/.bashrc"
               regexp="\.pyenvrc$"
               line="source {{ pyenv_path }}/.pyenvrc"
               state=present
 
 - name: Install Python interpreters {{ pyenv_python_versions }}
-  become: "'$pyenv_owner' == 'root'"
   shell: . {{ pyenv_path }}/.pyenvrc && pyenv install {{ item }}
          creates="{{ pyenv_path }}/versions/{{ item }}/bin/python"
   with_items: pyenv_python_versions
 
 - name: Create virtual environments
-  become: "'$pyenv_owner' == 'root'"
   shell: . {{ pyenv_path }}/.pyenvrc && pyenv virtualenv {{ item.py_version }} {{ item.venv_name }}
          creates="{{ pyenv_path }}/versions/{{ item.venv_name }}/bin/python"
   with_items: pyenv_virtualenvs
