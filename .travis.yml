@@ -10,8 +10,5 @@ install:
 script:
   - echo localhost > inventory
   - ansible-playbook -i inventory test.yml --syntax-check
-  - ansible-playbook -i inventory test.yml --connection=local --sudo -e "nginx_install_method=$INSTALL_METHOD"
-  - >
-    ansible-playbook -i inventory test.yml --connection=local --sudo -e "nginx_install_method=$INSTALL_METHOD"
-    | grep -q 'changed=0.*failed=0'
+  - ansible-playbook -i inventory test.yml --connection=local --sudo -vvv --diff
 #after_failure:
