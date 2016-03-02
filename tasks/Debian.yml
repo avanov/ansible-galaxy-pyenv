@@ -29,12 +29,14 @@
     repo: https://github.com/yyuu/pyenv.git
     dest: "{{ pyenv_path }}"
     update: "{{pyenv_update_git_install}}"
+  become_user: "{{pyenv_owner}}"
 
 - name: Install PyEnv-virtualenv plugin
   git:
     repo: https://github.com/yyuu/pyenv-virtualenv.git
     dest: "{{ pyenv_path }}/plugins/pyenv-virtualenv"
     update: "{{pyenv_update_git_install}}"
+  become_user: "{{pyenv_owner}}"
 
 - name: Install .pyenvrc
   template:
@@ -45,17 +47,20 @@
     mode: "0644"
 
 - name: Modify .bashrc
-  lineinfile: dest="{{ ansible_env.HOME }}/.bashrc"
+  lineinfile: dest="~/.bashrc"
               regexp="\.pyenvrc$"
               line="source {{ pyenv_path }}/.pyenvrc"
               state=present
+  become_user: "{{pyenv_owner}}"
 
-- name: Install Python interpreters {{ pyenv_python_versions }}
+- name: Install Python interpreters "{{ pyenv_python_versions }}"
   shell: . {{ pyenv_path }}/.pyenvrc && pyenv install {{ item }}
          creates="{{ pyenv_path }}/versions/{{ item }}/bin/python"
-  with_items: pyenv_python_versions
+  with_items: "{{pyenv_python_versions}}"
+  become_user: "{{pyenv_owner}}"
 
 - name: Create virtual environments
   shell: . {{ pyenv_path }}/.pyenvrc && pyenv virtualenv {{ item.py_version }} {{ item.venv_name }}
          creates="{{ pyenv_path }}/versions/{{ item.venv_name }}/bin/python"
-  with_items: pyenv_virtualenvs
+  with_items: "{{pyenv_virtualenvs}}"
+  become_user: "{{pyenv_owner}}"
