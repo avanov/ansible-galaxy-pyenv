@@ -47,11 +47,19 @@
     group: "{{ pyenv_owner }}"
     mode: "0644"
 
-- name: Modify .bashrc
+- name: Load pyenv env variables in .bashrc
   lineinfile: dest="~/.bashrc"
               regexp="\.pyenvrc$"
               line="source {{ pyenv_path }}/.pyenvrc"
               state=present
+  become_user: "{{pyenv_owner}}"
+
+- name: Add pyenv autocomplete in .bashrc
+  lineinfile: dest="~/.bashrc"
+              regexp="pyenv\.bash$"
+              line="source {{ pyenv_path }}/completions/pyenv.bash"
+              state=present
+  when: pyenv_enable_autocompletion
   become_user: "{{pyenv_owner}}"
 
 - name: Install Python interpreters "{{ pyenv_python_versions }}"
