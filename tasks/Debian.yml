@@ -52,6 +52,7 @@
               regexp="\.pyenvrc$"
               line="source {{ pyenv_path }}/.pyenvrc"
               state=present
+              create=yes
   become_user: "{{pyenv_owner}}"
 
 - name: Add pyenv autocomplete in .bashrc
