@@ -1,0 +1,20 @@
+---
+- name: Install prerequisite packages
+  yum:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - git
+  become: true
+
+- name: Install development packages necessary for building Python
+  yum:
+    pkg: "{{ item }}"
+    state: present
+  with_items:
+    - gcc
+    - libselinux-python
+    - zlib-devel
+    - openssl-devel
+  become: true
+

@@ -1,0 +1,49 @@
+---
+- name: Install PyEnv
+  git:
+    repo: https://github.com/pyenv/pyenv.git
+    dest: "{{ pyenv_path }}"
+    update: "{{ pyenv_update_git_install }}"
+
+- name: Install PyEnv-virtualenv plugin
+  git:
+    repo: https://github.com/yyuu/pyenv-virtualenv.git
+    dest: "{{ pyenv_path }}/plugins/pyenv-virtualenv"
+    update: "{{ pyenv_update_git_install }}"
+
+- name: Install .pyenvrc
+  template:
+    src: ".pyenvrc.j2"
+    dest: "{{ pyenv_path }}/.pyenvrc"
+    owner: "{{ pyenv_owner }}"
+    group: "{{ pyenv_owner }}"
+    mode: "0644"
+
+- name: "Load pyenv env variables in {{ pyenv_setting_path }}"
+  lineinfile: dest="{{ pyenv_setting_path }}"
+              regexp="\.pyenvrc$"
+              line="source {{ pyenv_path }}/.pyenvrc"
+              state=present
+              create=yes
+
+- name: "Add pyenv autocomplete in {{ pyenv_setting_path }}"
+  lineinfile: dest="{{ pyenv_setting_path }}"
+              regexp="pyenv\.bash$"
+              line="source {{ pyenv_path }}/completions/pyenv.bash"
+              state=present
+  when: pyenv_enable_autocompletion
+
+- name: Install Python interpreters "{{ pyenv_python_versions }}"
+  shell: . {{ pyenv_path }}/.pyenvrc && pyenv install {{ item }}
+         creates="{{ pyenv_path }}/versions/{{ item }}/bin/python"
+  with_items: "{{ pyenv_python_versions }}"
+
+- name: Create virtual environments
+  shell: . {{ pyenv_path }}/.pyenvrc && pyenv virtualenv {{ item.py_version }} {{ item.venv_name }}
+         creates="{{ pyenv_path }}/versions/{{ item.venv_name }}/bin/python"
+  with_items: "{{ pyenv_virtualenvs }}"
+
+- name: Set pyenv global
+  shell: . {{ pyenv_path }}/.pyenvrc && pyenv global {{ pyenv_global }} && pyenv rehash
+  when: pyenv_global is defined
+
