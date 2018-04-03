@@ -10,3 +10,5 @@ pyenv_python_versions:
   - 3.5.0
 pyenv_virtualenvs:
   - { venv_name: "latest", py_version: "3.5.0" }
+
+pyenv_update: no
