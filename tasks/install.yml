@@ -16,6 +16,7 @@
     repo: https://github.com/pyenv/pyenv-update.git
     dest: "{{ pyenv_path }}/plugins/pyenv-update"
     update: "{{ pyenv_update_git_install }}"
+  when: pyenv_update
 
 - name: Install .pyenvrc
   template:
