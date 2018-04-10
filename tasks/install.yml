@@ -11,6 +11,13 @@
     dest: "{{ pyenv_path }}/plugins/pyenv-virtualenv"
     update: "{{ pyenv_update_git_install }}"
 
+- name: Install PyEnv-update plugin
+  git:
+    repo: https://github.com/pyenv/pyenv-update.git
+    dest: "{{ pyenv_path }}/plugins/pyenv-update"
+    update: "{{ pyenv_update_git_install }}"
+  when: pyenv_update
+
 - name: Install .pyenvrc
   template:
     src: ".pyenvrc.j2"
@@ -33,6 +40,10 @@
               state=present
   when: pyenv_enable_autocompletion
 
+- name: Update Pyenv interpreter list
+  shell: . {{ pyenv_path }}/.pyenvrc && pyenv update
+  when: pyenv_update
+  
 - name: Install Python interpreters "{{ pyenv_python_versions }}"
   shell: . {{ pyenv_path }}/.pyenvrc && pyenv install {{ item }}
          creates="{{ pyenv_path }}/versions/{{ item }}/bin/python"

@@ -1,6 +1,7 @@
 - hosts: all
   vars_files:
     - 'defaults/main.yml'
+    - 'tests/test_update_vars.yml'
   tasks:
     - debug:
         msg: "Owner: {{ pyenv_owner }}"

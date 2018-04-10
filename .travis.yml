@@ -11,4 +11,6 @@ script:
   - echo localhost > inventory
   - ansible-playbook -i inventory test.yml --syntax-check
   - ansible-playbook -i inventory test.yml --connection=local --sudo -vvv --diff
+  - ansible-playbook -i inventory test_update.yml --syntax-check
+  - ansible-playbook -i inventory test_update.yml --connection=local --sudo -vvv --diff
 #after_failure:
