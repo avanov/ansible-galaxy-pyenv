@@ -11,11 +11,3 @@
   with_items:
     - "{{ pyenv_debian_packages }}"
   become: true
-
-- name: Install extra packages necessary for building Python
-  apt:
-    pkg: "{{ item }}"
-    state: present
-  with_items:
-    - "{{ pyenv_extra_depends }}"
-  become: true

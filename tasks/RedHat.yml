@@ -8,10 +8,3 @@
   with_items:
     - "{{ pyenv_redhat_packages }}"
   become: true
-
-- name: Install extra packages necessary for building Python
-  action: >
-    {{ ansible_pkg_mgr }} name={{ item }} state=present
-  with_items:
-    - "{{ pyenv_extra_depends }}"
-  become: true

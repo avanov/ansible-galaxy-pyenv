@@ -13,7 +13,6 @@ pyenv_virtualenvs:
 
 pyenv_update: no
 
-pyenv_extra_depends: []
 pyenv_debian_packages:
 - build-essential
 - git
