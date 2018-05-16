@@ -12,3 +12,21 @@ pyenv_virtualenvs:
   - { venv_name: "latest", py_version: "3.5.0" }
 
 pyenv_update: no
+
+pyenv_debian_packages:
+  - build-essential
+  - git
+  # On Ubuntu 12.04 build may fail with the following error:
+  #   python-build: wget (< 1.14) doesn't support Server Name Indication.
+  #   Please install curl (>= 7.18.1) and try again
+  - curl
+  - libssl-dev
+  - libbz2-dev
+  - libsqlite3-dev
+  - libreadline-dev
+pyenv_redhat_packages:
+  - git
+  - gcc
+  - libselinux-python
+  - zlib-devel
+  - openssl-devel

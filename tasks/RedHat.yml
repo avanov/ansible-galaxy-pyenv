@@ -1,20 +1,9 @@
 ---
-- name: Install prerequisite packages
-  yum:
-    pkg: "{{ item }}"
-    state: present
-  with_items:
-    - git
-  become: true
-
+# Use action module which can interchangably use yum or dnf depending on what is available ( Eg. dnf on Fedora vs yum on Centos )
+# Note: special variable ansible_pkg_mgr requires fact_gathering to be enabled
+# More: https://ansible-tips-and-tricks.readthedocs.io/en/latest/os-dependent-tasks/installing_packages/
 - name: Install development packages necessary for building Python
-  yum:
-    pkg: "{{ item }}"
-    state: present
-  with_items:
-    - gcc
-    - libselinux-python
-    - zlib-devel
-    - openssl-devel
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present
+  with_items: "{{ pyenv_redhat_packages }}"
   become: true
-

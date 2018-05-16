@@ -4,27 +4,9 @@
     update_cache: yes
   become: true
 
-- name: Install prerequisite packages
-  apt:
-    pkg: "{{ item }}"
-    state: present
-  with_items:
-    - build-essential
-    - git
-    # On Ubuntu 12.04 build may fail with the following error:
-    #   python-build: wget (< 1.14) doesn't support Server Name Indication.
-    #   Please install curl (>= 7.18.1) and try again
-    - curl
-  become: true
-
 - name: Install development packages necessary for building Python
   apt:
     pkg: "{{ item }}"
     state: present
-  with_items:
-    - libssl-dev
-    - libbz2-dev
-    - libsqlite3-dev
-    - libreadline-dev
+  with_items: "{{ pyenv_debian_packages }}"
   become: true
-

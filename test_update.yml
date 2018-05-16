@@ -1,4 +1,5 @@
 - hosts: all
+  gather_facts: True
   vars_files:
     - 'defaults/main.yml'
     - 'tests/test_update_vars.yml'
