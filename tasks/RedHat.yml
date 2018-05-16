@@ -5,6 +5,5 @@
 - name: Install development packages necessary for building Python
   action: >
     {{ ansible_pkg_mgr }} name={{ item }} state=present
-  with_items:
-    - "{{ pyenv_redhat_packages }}"
+  with_items: "{{ pyenv_redhat_packages }}"
   become: true
