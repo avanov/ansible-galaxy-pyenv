@@ -23,7 +23,6 @@
     src: ".pyenvrc.j2"
     dest: "{{ pyenv_path }}/.pyenvrc"
     owner: "{{ pyenv_owner }}"
-    group: "{{ pyenv_owner }}"
     mode: "0644"
 
 - name: "Load pyenv env variables in {{ pyenv_setting_path }}"
