@@ -18,9 +18,9 @@ galaxy_info:
   # platform on this list, let us know and we'll get it added!
   #
   platforms:
-    - name: MacOSX
+    - name: macOS
       versions:
-        - '10.13'
+        - Sierra
 
     - name: EL
       versions:
