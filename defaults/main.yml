@@ -30,6 +30,11 @@ pyenv_redhat_packages:
   - libselinux-python
   - zlib-devel
   - openssl-devel
+  - bzip2-devel
+  - readline-devel
+  - libffi-devel
+  - sqlite-devel
+  - gdbm-devel
 pyenv_osx_packages:
   - readline
   - xz
