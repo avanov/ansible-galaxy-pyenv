@@ -1,6 +1,5 @@
 - name: Install development packages necessary for building Python
   homebrew:
-    name: "{{ item }}"
+    name: "{{ pyenv_osx_packages }}"
     state: present
-  with_items: "{{ pyenv_osx_packages }}"
   become: false

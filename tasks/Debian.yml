@@ -6,7 +6,6 @@
 
 - name: Install development packages necessary for building Python
   apt:
-    pkg: "{{ item }}"
+    pkg: "{{ pyenv_debian_packages }}"
     state: present
-  with_items: "{{ pyenv_debian_packages }}"
   become: true
