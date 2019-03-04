@@ -4,6 +4,5 @@
 # More: https://ansible-tips-and-tricks.readthedocs.io/en/latest/os-dependent-tasks/installing_packages/
 - name: Install development packages necessary for building Python
   action: >
-    {{ ansible_pkg_mgr }} name={{ item }} state=present
-  with_items: "{{ pyenv_redhat_packages }}"
+    {{ ansible_pkg_mgr }} name="{{ pyenv_redhat_packages }}" state=present
   become: true
