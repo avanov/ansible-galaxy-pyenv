@@ -44,7 +44,7 @@
   when: pyenv_update
   
 - name: Install Python interpreters "{{ pyenv_python_versions }}"
-  shell: . {{ pyenv_path }}/.pyenvrc && pyenv install {{ item }}
+  shell: . {{ pyenv_path }}/.pyenvrc && env PYTHON_CONFIGURE_OPTS="{{ pyenv_python_configure_opts }}" pyenv install {{ item }}
          creates="{{ pyenv_path }}/versions/{{ item }}/bin/python"
   with_items: "{{ pyenv_python_versions }}"
 
