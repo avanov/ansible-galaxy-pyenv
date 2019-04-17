@@ -15,6 +15,9 @@ pyenv_init_options: "{% if pyenv_env != 'user' %}--no-rehash{% endif %}"
 
 pyenv_update: no
 
+# additional options for the build process, e.g "--enable-shared"
+pyenv_python_configure_opts: ""
+
 pyenv_debian_packages:
   - build-essential
   - git
