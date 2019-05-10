@@ -39,6 +39,7 @@ pyenv_debian_packages:
   - libxmlsec1-dev
   - libffi-dev
 pyenv_redhat_packages:
+  - make
   - git
   - gcc
   - libselinux-python
