@@ -22,7 +22,7 @@ Role Variables
 
 Here is the list of all variables and their default values:
 
-* ``pyenv_env: "user"``
+* ``pyenv_env: "user"`` (should be either `"user"` or `"system"`)
 * ``pyenv_path: "{% if pyenv_env == 'user' %}{{ ansible_env.HOME }}/pyenv{% else %}/usr/local/pyenv{% endif %}"``
 * ``pyenv_owner: "{{ ansible_env.USER }}"``
 * ``pyenv_python_versions: ["3.4.1"]``
