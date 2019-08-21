@@ -42,7 +42,13 @@
 - name: Update Pyenv interpreter list
   shell: . {{ pyenv_path }}/.pyenvrc && pyenv update
   when: pyenv_update
-  
+
+- name: Uninstall existing Python interpreters w/ wrong compilation flags
+  shell: ". {{ pyenv_path }}/.pyenvrc && pyenv uninstall -f {{ item }}"
+  args:
+    removes: "{{ pyenv_path }}/versions/{{ item }}/bin/python"
+  loop: "{{ ansible_local['pyenv_python_installations']['to_reinstall'] | default([]) }}"
+
 - name: Install Python interpreters "{{ pyenv_python_versions }}"
   shell: . {{ pyenv_path }}/.pyenvrc && env PYTHON_CONFIGURE_OPTS="{{ pyenv_python_configure_opts }}" pyenv install {{ item }}
          creates="{{ pyenv_path }}/versions/{{ item }}/bin/python"
