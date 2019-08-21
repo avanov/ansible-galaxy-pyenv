@@ -1,0 +1,25 @@
+---
+- name: Create folder for custom facts
+  file:
+    path: /etc/ansible/facts.d
+    state: directory
+
+- name: Copy over check-configure-options.py
+  template:
+    src: templates/check-configure-options.py.j2
+    dest: /etc/ansible/facts.d/check-configure-options.py
+    owner: "{{ pyenv_owner }}"
+    group: "{{ pyenv_owner }}"
+    mode: "0755"
+
+- name: Copy over python_check fact file
+  template:
+    src: templates/pyenv_python_installations.fact.j2
+    dest: /etc/ansible/facts.d/pyenv_python_installations.fact
+    owner: "{{ pyenv_owner }}"
+    group: "{{ pyenv_owner }}"
+    mode: "0755"
+
+- name: Reload setup to gather custom facts
+  setup:
+    filter: ansible_local

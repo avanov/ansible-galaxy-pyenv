@@ -1,0 +1,6 @@
+import sysconfig
+
+config_args = sysconfig.get_config_var("CONFIG_ARGS")
+config_args = config_args.replace("'", "").split()
+required_args = {{ pyenv_python_configure_opts.split() }}
+print(all(s in config_args for s in required_args))
