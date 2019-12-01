@@ -1,0 +1,29 @@
+#!/bin/bash
+
+configure_opts_checker="/etc/ansible/facts.d/check-configure-options.py"
+
+declare -a installs_to_check=({{ " ".join(pyenv_python_versions) }})
+declare -a to_reinstall=()
+declare -a to_install=()
+
+# Join array to string
+function join { local IFS="$1"; shift; echo "[$*]"; }
+
+for version in "${installs_to_check[@]}"
+do
+py_installation="{{ pyenv_path }}/versions/$version/bin/python"
+
+    if [[ -x "$py_installation" ]]; then
+        is_valid_install=$("$py_installation" "$configure_opts_checker")
+
+        if [[ $is_valid_install =~ "False" ]]; then
+            to_reinstall+=("\"$version\"")
+        fi
+    else
+        to_install+=("\"$version\"")
+    fi
+done
+
+to_reinstall_str=$(join , ${to_reinstall[@]})
+to_install_str=$(join , ${to_install[@]})
+printf "{ \"to_reinstall\": "$to_reinstall_str", \"to_install\": "$to_install_str" }\n"
