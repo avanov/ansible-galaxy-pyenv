@@ -17,6 +17,7 @@ pyenv_update: no
 
 # additional options for the build process, e.g "--enable-shared"
 pyenv_python_configure_opts: ""
+pyenv_uninstall_python_w_wrong_configure_opts: no
 
 pyenv_debian_packages:
   - build-essential
@@ -30,9 +31,9 @@ pyenv_debian_packages:
   - libsqlite3-dev
   - libreadline-dev
   - zlib1g-dev
-  - wget 
-  - llvm 
-  - libncurses5-dev 
+  - wget
+  - llvm
+  - libncurses5-dev
   - xz-utils
   - tk-dev
   - libxml2-dev
