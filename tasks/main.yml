@@ -1,12 +1,6 @@
 ---
 - include: custom_facts.yml
   become: true
-  become_user: "{{ pyenv_owner }}"
-  when: pyenv_env == "user"
-
-- include: custom_facts.yml
-  become: true
-  when: pyenv_env == "system"
 
 - include: Darwin.yml
   when: ansible_os_family == "Darwin"
