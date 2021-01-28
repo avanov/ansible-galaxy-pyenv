@@ -1,8 +1,8 @@
 - hosts: all
   gather_facts: True
   vars_files:
-    - 'defaults/main.yml'
+    - "defaults/main.yml"
   tasks:
     - debug:
         msg: "Owner: {{ pyenv_owner }}"
-    - include: 'tasks/main.yml'
+    - include: "tasks/main.yml"

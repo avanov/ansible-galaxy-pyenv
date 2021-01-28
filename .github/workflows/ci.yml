@@ -32,37 +32,36 @@ jobs:
           yamllint .
           ansible-lint
 
-#  molecule:
-#    name: Molecule
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        distro:
-#          - centos8
-#          - centos7
-#          - ubuntu2004
-#          - ubuntu1804
-#          - debian10
-#          - debian9
-#          - fedora31
+  molecule:
+    name: Molecule
+    runs-on: ubuntu-latest
 
-#    steps:
-#      - name: Check out the repository
-#        uses: actions/checkout@v2.3.4
-#        with:
-#          fetch-depth: 2
+    strategy:
+      matrix:
+        img:
+          - staticdev/docker-ubuntu2010-ansible:latest
+          - geerlingguy/docker-ubuntu2004-ansible:latest
+          - geerlingguy/docker-ubuntu1804-ansible:latest
+          - geerlingguy/docker-debian10-ansible:latest
+          - geerlingguy/docker-debian9-ansible:latest
 
-#      - name: Set up Python
-#        uses: actions/setup-python@v2.1.4
-#        with:
-#          python-version: "3.9"
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 2
 
-#      - name: Install test dependencies
-#        run: pip3 install ansible molecule[docker] docker
+      - name: Set up Python
+        uses: actions/setup-python@v2.1.4
+        with:
+          python-version: "3.9"
 
-#      - name: Run Molecule tests
-#        run: molecule test
-#        env:
-#          PY_COLORS: '1'
-#          ANSIBLE_FORCE_COLOR: '1'
-#          MOLECULE_DISTRO: ${{ matrix.distro }}
+      - name: Install test dependencies
+        run: pip3 install ansible molecule[docker] docker
+
+      - name: Run Molecule tests
+        run: molecule test
+        env:
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"
+          MOLECULE_IMG: ${{ matrix.img }}

@@ -2,7 +2,7 @@
 - name: Ensure apt cache is up to date
   apt:
     update_cache: yes
-    cache_valid_time: "{{ 48 * 60 * 60 }}"  # consider the cache to be valid within 48 hours
+    cache_valid_time: 3600
   become: true
 
 - name: Install development packages necessary for building Python
