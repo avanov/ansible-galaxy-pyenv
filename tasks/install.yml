@@ -27,16 +27,16 @@
 
 - name: "Load pyenv env variables in {{ pyenv_setting_path }}"
   lineinfile: dest="{{ pyenv_setting_path }}"
-              regexp="\.pyenvrc$"
-              line="source {{ pyenv_path }}/.pyenvrc"
-              state=present
-              create=yes
+    regexp="\.pyenvrc$"
+    line="source {{ pyenv_path }}/.pyenvrc"
+    state=present
+    create=yes
 
 - name: "Add pyenv autocomplete in {{ pyenv_setting_path }}"
   lineinfile: dest="{{ pyenv_setting_path }}"
-              regexp="pyenv\.bash$"
-              line="source {{ pyenv_path }}/completions/pyenv.bash"
-              state=present
+    regexp="pyenv\.bash$"
+    line="source {{ pyenv_path }}/completions/pyenv.bash"
+    state=present
   when: pyenv_enable_autocompletion
 
 - name: Update Pyenv interpreter list
@@ -59,11 +59,11 @@
   with_items: "{{ pyenv_python_versions }}"
 
 - name: Create virtual environments
-  shell: . {{ pyenv_path }}/.pyenvrc && pyenv virtualenv {{ item.py_version }} {{ item.venv_name }}
-         creates="{{ pyenv_path }}/versions/{{ item.venv_name }}/bin/python"
+  shell:
+    . {{ pyenv_path }}/.pyenvrc && pyenv virtualenv {{ item.py_version }} {{ item.venv_name }}
+    creates="{{ pyenv_path }}/versions/{{ item.venv_name }}/bin/python"
   with_items: "{{ pyenv_virtualenvs }}"
 
 - name: Set pyenv global
   shell: . {{ pyenv_path }}/.pyenvrc && pyenv global {{ pyenv_global }} && pyenv rehash
   when: pyenv_global is defined
-

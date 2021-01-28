@@ -1,8 +1,6 @@
-avanov.pyenv
-============
+# avanov.pyenv
 
 [![Build Status](https://travis-ci.org/avanov/ansible-galaxy-pyenv.svg)](https://travis-ci.org/avanov/ansible-galaxy-pyenv)
-
 
 Ansible Galaxy role for [pyenv](https://github.com/yyuu/pyenv) on Ubuntu / RedHat / OSX.
 
@@ -12,33 +10,29 @@ Install it with the following command:
 $ ansible-galaxy install avanov.pyenv
 ```
 
-Requirements
-------------
+## Requirements
 
 None
 
-Role Variables
---------------
+## Role Variables
 
 Here is the list of all variables and their default values:
 
-* ``pyenv_env: "user"`` (should be either `"user"` or `"system"`)
-* ``pyenv_path: "{% if pyenv_env == 'user' %}{{ ansible_env.HOME }}/pyenv{% else %}/usr/local/pyenv{% endif %}"``
-* ``pyenv_owner: "{{ ansible_env.USER }}"``
-* ``pyenv_python_versions: ["3.4.1"]``
-* ``pyenv_virtualenvs: [{ venv_name: "latest", py_version: "3.4.1" }]``
-* ``pyenv_global: "3.4.1"``
-* ``pyenv_update_git_install: no``
-* ``pyenv_enable_autocompletion: no``
-* ``pyenv_setting_path: "{% if pyenv_env == 'user' %}~/.bashrc{% else %}/etc/profile.d/pyenv.sh{% endif %}"``
+- `pyenv_env: "user"` (should be either `"user"` or `"system"`)
+- `pyenv_path: "{% if pyenv_env == 'user' %}{{ ansible_env.HOME }}/pyenv{% else %}/usr/local/pyenv{% endif %}"`
+- `pyenv_owner: "{{ ansible_env.USER }}"`
+- `pyenv_python_versions: ["3.4.1"]`
+- `pyenv_virtualenvs: [{ venv_name: "latest", py_version: "3.4.1" }]`
+- `pyenv_global: "3.4.1"`
+- `pyenv_update_git_install: no`
+- `pyenv_enable_autocompletion: no`
+- `pyenv_setting_path: "{% if pyenv_env == 'user' %}~/.bashrc{% else %}/etc/profile.d/pyenv.sh{% endif %}"`
 
-Dependencies
-------------
+## Dependencies
 
 None
 
-Example Playbook
--------------------------
+## Example Playbook
 
     - hosts: servers
       roles:
@@ -59,12 +53,10 @@ Example Playbook
              - venv_name: "latest_v2"
                py_version: "2.7.8"
 
-License
--------
+## License
 
 MIT
 
-Author Information
-------------------
+## Author Information
 
 Maxim Avanov (https://maximavanov.com/)
