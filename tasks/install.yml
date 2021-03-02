@@ -60,7 +60,7 @@
 
 - name: Create virtual environments
   shell: . {{ pyenv_path }}/.pyenvrc && pyenv virtualenv {{ item.py_version }} {{ item.venv_name }}
-         creates="{{ pyenv_path }}/versions/{{ item.venv_name }}/bin/python"
+         creates="{{ pyenv_path }}/versions/{{ item.py_version }}/envs/{{ item.venv_name }}/bin/python"
   with_items: "{{ pyenv_virtualenvs }}"
 
 - name: Set pyenv global
