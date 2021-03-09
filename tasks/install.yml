@@ -1,19 +1,33 @@
 ---
-- name: Install PyEnv
+- name: Install PyEnv from git ref
   git:
     repo: https://github.com/pyenv/pyenv.git
     dest: "{{ pyenv_path }}"
     version: "{{ pyenv_git_ref }}"
-    # TODO: Make update always yes if "version" is specified
+    update: "yes"
+    when: pyenv_git_ref
+
+- name: Install PyEnv
+  git:
+    repo: https://github.com/pyenv/pyenv.git
+    dest: "{{ pyenv_path }}"
     update: "{{ pyenv_update_git_install }}"
+    when: pyenv_git_ref is undefined
+
+- name: Install PyEnv-virtualenv plugin from git ref
+  git:
+    repo: https://github.com/yyuu/pyenv-virtualenv.git
+    dest: "{{ pyenv_path }}/plugins/pyenv-virtualenv"
+    version: "{{ pyenv_virtualenv_git_ref }}"
+    update: "yes"
+    when: pyenv_virtualenv_git_ref
 
 - name: Install PyEnv-virtualenv plugin
   git:
     repo: https://github.com/yyuu/pyenv-virtualenv.git
     dest: "{{ pyenv_path }}/plugins/pyenv-virtualenv"
-    version: "{{ pyenv_virtualenv_git_ref }}"
-    # TODO: Make update always yes if "version" is specified
     update: "{{ pyenv_update_git_install }}"
+    when: pyenv_virtualenv_git_ref is undefined
 
 - name: Install PyEnv-update plugin
   git:
