@@ -1,23 +1,21 @@
 ---
 galaxy_info:
-  author: Maxim Avanov
+  role_name: pyenv
+  author: staticdev
   description: Ansible Galaxy role for pyenv (https://github.com/yyuu/pyenv).
   company:
   license: MIT
-  min_ansible_version: 2.9
+  min_ansible_version: 2.10
 
   platforms:
     - name: macOS
       versions:
         - Sierra
-    - name: EL
-      versions:
-        - 6
-        - 7
     - name: Debian
       versions:
         - stretch
         - buster
+        - bullseye
     - name: Ubuntu
       versions:
         - bionic
