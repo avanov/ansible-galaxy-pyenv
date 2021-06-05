@@ -2,7 +2,7 @@
 galaxy_info:
   role_name: pyenv
   author: staticdev
-  description: Ansible Galaxy role for pyenv (https://github.com/yyuu/pyenv).
+  description: Ansible Galaxy role for pyenv.
   company:
   license: MIT
   min_ansible_version: 2.10
