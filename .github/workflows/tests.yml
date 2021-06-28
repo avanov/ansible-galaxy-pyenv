@@ -25,7 +25,7 @@ jobs:
           python-version: "3.9"
 
       - name: Install test dependencies
-        run: pip install --constraint=.github/workflows/constraints.txt yamllint ansible-lint
+        run: pip install --constraint=.github/workflows/constraints.txt ansible yamllint ansible-lint
 
       - name: Lint code
         run: |
