@@ -1,5 +1,6 @@
+---
 - hosts: all
-  gather_facts: True
+  gather_facts: true
   vars_files:
     - "defaults/main.yml"
   tasks:

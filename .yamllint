@@ -1,33 +1,20 @@
 ---
-# Based on ansible-lint config
 extends: default
 
 rules:
+  line-length:
+    max: 180
+    level: warning
   braces:
-    max-spaces-inside: 1
+    level: warning
+  document-start:
     level: error
-  brackets:
-    max-spaces-inside: 1
+  comments:
     level: error
-  colons:
-    max-spaces-after: -1
+  truthy:
     level: error
-  commas:
-    max-spaces-after: -1
-    level: error
-  comments: disable
-  comments-indentation: disable
-  document-start: disable
-  empty-lines:
-    max: 3
-    level: error
-  hyphens:
-    level: error
-  indentation: disable
-  key-duplicates: enable
-  line-length: disable
-  new-line-at-end-of-file: disable
-  new-lines:
-    type: unix
-  trailing-spaces: disable
-  truthy: disable
+
+ignore: |
+  .github/stale.yml
+  .cache
+  roles
