@@ -4,8 +4,8 @@ pyenv_env: "user"
 pyenv_path: "{% if pyenv_env == 'user' %}{{ ansible_env.HOME }}/pyenv{% else %}/usr/local/pyenv{% endif %}"
 pyenv_owner: "{{ ansible_env.USER }}"
 pyenv_setting_path: "{% if pyenv_env == 'user' %}~/.bashrc{% else %}/etc/profile.d/pyenv.sh{% endif %}"
-pyenv_update_git_install: no
-pyenv_enable_autocompletion: no
+pyenv_update_git_install: false
+pyenv_enable_autocompletion: false
 pyenv_python_versions:
   - 3.9.5
 pyenv_virtualenvs:
@@ -13,11 +13,11 @@ pyenv_virtualenvs:
 # For a system install, the shims dir will not be writable by users, disable rehashing
 pyenv_init_options: "{% if pyenv_env != 'user' %}--no-rehash{% endif %}"
 
-pyenv_update: no
+pyenv_update: false
 
 # additional options for the build process, e.g "--enable-shared"
 pyenv_python_configure_opts: ""
-pyenv_uninstall_python_w_wrong_configure_opts: no
+pyenv_uninstall_python_w_wrong_configure_opts: false
 
 pyenv_debian_packages:
   - build-essential
