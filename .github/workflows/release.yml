@@ -26,6 +26,24 @@ jobs:
           pip install --constraint=.github/workflows/constraints.txt pip
           pip --version
 
+      - name: Install Poetry
+        run: |
+          pip install --constraint=.github/workflows/constraints.txt poetry
+          poetry --version
+
+      - name: Check if there is a parent commit
+        id: check-parent-commit
+        run: |
+          echo "::set-output name=sha::$(git rev-parse --verify --quiet HEAD^)"
+
+      - name: Detect and tag new version
+        id: check-version
+        if: steps.check-parent-commit.outputs.sha
+        uses: salsify/action-detect-and-tag-new-version@v2.0.1
+        with:
+          version-command: |
+            bash -o pipefail -c "poetry version | awk '{ print \$2 }'"
+
       - name: Install Ansible
         run: |
           pip install --constraint=.github/workflows/constraints.txt ansible
