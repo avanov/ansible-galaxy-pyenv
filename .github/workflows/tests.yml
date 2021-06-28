@@ -1,5 +1,6 @@
 ---
-name: CI
+name: Tests
+
 "on":
   pull_request:
   push:
