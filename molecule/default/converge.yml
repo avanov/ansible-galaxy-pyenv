@@ -4,4 +4,4 @@
   become: true
 
   roles:
-    - ansible-galaxy-pyenv
+    - staticdev.pyenv

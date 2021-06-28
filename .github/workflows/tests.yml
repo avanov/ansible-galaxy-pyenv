@@ -45,7 +45,7 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v2.3.4
         with:
-          fetch-depth: 2
+          path: "staticdev.pyenv"
 
       - name: Set up Python
         uses: actions/setup-python@v2.1.4
