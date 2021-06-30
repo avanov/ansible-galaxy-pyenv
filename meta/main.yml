@@ -24,5 +24,7 @@ galaxy_info:
 
   categories:
     - development
+    - pyenv
+    - python
     - system
 dependencies: []
