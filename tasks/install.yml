@@ -65,5 +65,5 @@
   with_items: "{{ pyenv_virtualenvs }}"
 
 - name: Set pyenv global
-  shell: . {{ pyenv_path }}/.pyenvrc && pyenv global {{ pyenv_global }} && pyenv rehash
+  shell: . {{ pyenv_path }}/.pyenvrc && pyenv global {{ pyenv_global | join(' ') }} && pyenv rehash
   when: pyenv_global is defined
