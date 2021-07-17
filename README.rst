@@ -50,21 +50,21 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - role: avanov.pyenv
+         - role: staticdev.pyenv
            pyenv_path: "{{ home }}/pyenv"
            pyenv_owner: "{{ instance_owner }}"
            pyenv_global: 
-             - "3.7.6"
+             - "3.7.11"
            pyenv_update_git_install: no
            pyenv_enable_autocompletion: no
            pyenv_python_versions:
-             - "3.8.6"
+             - "3.8.11"
              - "3.9.6"
            pyenv_virtualenvs:
              - venv_name: "latest_v39"
                py_version: "3.9.6"
              - venv_name: "latest_v38"
-               py_version: "3.8.6"
+               py_version: "3.8.11"
 
 
 License
