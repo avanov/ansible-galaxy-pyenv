@@ -7,9 +7,11 @@ pyenv_setting_path: "{% if pyenv_env == 'user' %}~/.bashrc{% else %}/etc/profile
 pyenv_update_git_install: false
 pyenv_enable_autocompletion: false
 pyenv_python_versions:
-  - 3.9.5
-pyenv_virtualenvs:
-  - { venv_name: "latest", py_version: "3.9.5" }
+  - 3.9.6
+pyenv_global: 
+  - 3.7.6
+pyenv_virtualenvs: []
+  # - { venv_name: "latest", py_version: "3.9.6" }
 # For a system install, the shims dir will not be writable by users, disable rehashing
 pyenv_init_options: "{% if pyenv_env != 'user' %}--no-rehash{% endif %}"
 

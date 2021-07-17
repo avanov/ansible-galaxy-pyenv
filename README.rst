@@ -31,7 +31,7 @@ Here is the list of all variables and their default values:
 - `pyenv_owner: "{{ ansible_env.USER }}"`
 - `pyenv_python_versions: ["3.9.1"]`
 - `pyenv_virtualenvs: [{ venv_name: "latest", py_version: "3.9.1" }]`
-- `pyenv_global: "3.9.1"`
+- `pyenv_global: ["3.9.1"]`
 - `pyenv_update_git_install: no`
 - `pyenv_enable_autocompletion: no`
 - `pyenv_setting_path: "{% if pyenv_env == 'user' %}~/.bashrc{% else %}/etc/profile.d/pyenv.sh{% endif %}"`
@@ -53,18 +53,18 @@ Example Playbook
          - role: avanov.pyenv
            pyenv_path: "{{ home }}/pyenv"
            pyenv_owner: "{{ instance_owner }}"
-           pyenv_global: "3.7.5"
+           pyenv_global: 
+             - "3.7.6"
            pyenv_update_git_install: no
            pyenv_enable_autocompletion: no
            pyenv_python_versions:
-             - "3.8.5"
-             - "3.9.1"
+             - "3.8.6"
+             - "3.9.6"
            pyenv_virtualenvs:
              - venv_name: "latest_v39"
-               py_version: "3.9.1"
-
+               py_version: "3.9.6"
              - venv_name: "latest_v38"
-               py_version: "3.8.5"
+               py_version: "3.8.6"
 
 
 License
