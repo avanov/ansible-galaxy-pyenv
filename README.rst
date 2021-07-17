@@ -53,7 +53,7 @@ Example Playbook
          - role: staticdev.pyenv
            pyenv_path: "{{ home }}/pyenv"
            pyenv_owner: "{{ instance_owner }}"
-           pyenv_global: 
+           pyenv_global:
              - "3.7.11"
            pyenv_update_git_install: no
            pyenv_enable_autocompletion: no
