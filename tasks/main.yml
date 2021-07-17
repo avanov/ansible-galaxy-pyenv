@@ -1,21 +1,21 @@
 ---
-- include: custom_facts.yml
+- import_tasks: custom_facts.yml
   become: true
 
-- include: Darwin.yml
+- import_tasks: Darwin.yml
   when: ansible_os_family == "Darwin"
 
-- include: Debian.yml
+- import_tasks: Debian.yml
   when: ansible_os_family == "Debian"
 
-- include: RedHat.yml
+- import_tasks: RedHat.yml
   when: ansible_os_family == "RedHat"
 
-- include: install.yml
+- import_tasks: install.yml
   become: true
   become_user: "{{ pyenv_owner }}"
   when: pyenv_env == "user"
 
-- include: install.yml
+- import_tasks: install.yml
   become: true
   when: pyenv_env == "system"
