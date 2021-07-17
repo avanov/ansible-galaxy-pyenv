@@ -66,4 +66,6 @@
 
 - name: Set pyenv global
   shell: . {{ pyenv_path }}/.pyenvrc && pyenv global {{ pyenv_global | join(' ') }} && pyenv rehash
+  args:
+    creates: "{{ pyenv_path }}/version"
   when: pyenv_global is defined
