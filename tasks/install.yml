@@ -50,7 +50,7 @@
   loop: "{{ ansible_local['pyenv_python_installations']['to_reinstall'] | default([]) }}"
   when: pyenv_uninstall_python_w_wrong_configure_opts
 
-- name: Install Python interpreters "{{ pyenv_python_versions }}"
+- name: "Install Python interpreters {{ pyenv_python_versions }}"
   shell: ". {{ pyenv_path }}/.pyenvrc && pyenv install {{ item }}"
   environment:
     PYTHON_CONFIGURE_OPTS: "{{ pyenv_python_configure_opts }}"
@@ -64,7 +64,7 @@
     creates="{{ pyenv_path }}/versions/{{ item.py_version }}/envs/{{ item.venv_name }}/bin/python"
   with_items: "{{ pyenv_virtualenvs }}"
 
-- name: Set pyenv global
+- name: "Set pyenv global {{ pyenv_global }}"
   shell: . {{ pyenv_path }}/.pyenvrc && pyenv global {{ pyenv_global | join(' ') }} && pyenv rehash
   args:
     creates: "{{ pyenv_path }}/version"
