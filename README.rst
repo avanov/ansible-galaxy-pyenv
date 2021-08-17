@@ -1,4 +1,4 @@
-Ansible role: pyenv
+Ansible role: Pyenv
 ===================
 
 |Tests|
@@ -66,11 +66,18 @@ Example Playbook
              - venv_name: latest_v38
                py_version: 3.8.11
 
+Contributing
+------------
+
+Contributions are very welcome.
+To learn more, see the `Contributor Guide`_.
+
 
 License
--------
+=======
 
-MIT
+Distributed under the terms of the MIT_ license,
+*Ansible role Pyenv* is free and open source software.
 
 
 Author Information
@@ -79,5 +86,7 @@ Author Information
 `staticdev`_. Heavily based on Maxim Avanov's `avanov.pyenv`_
 
 .. _avanov.pyenv: https://galaxy.ansible.com/avanov/pyenv
+.. _MIT: https://opensource.org/licenses/MIT
 .. _pyenv: https://github.com/yyuu/pyenv
 .. _staticdev: https://github.com/staticdev
+.. _Contributor Guide: CONTRIBUTING.rst
