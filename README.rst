@@ -74,7 +74,7 @@ To learn more, see the `Contributor Guide`_.
 
 
 License
-=======
+-------
 
 Distributed under the terms of the MIT_ license,
 *Ansible role Pyenv* is free and open source software.
