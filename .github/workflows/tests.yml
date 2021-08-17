@@ -38,8 +38,10 @@ jobs:
 
     strategy:
       matrix:
-        img:
-          - cisagov/docker-debian11-ansible:latest
+        distro:
+          - debian11
+          - debian10
+          - ubuntu2004
 
     steps:
       - name: Check out the repository
@@ -60,4 +62,4 @@ jobs:
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
-          MOLECULE_IMG: ${{ matrix.img }}
+          MOLECULE_DISTRO: ${{ matrix.distro }}
