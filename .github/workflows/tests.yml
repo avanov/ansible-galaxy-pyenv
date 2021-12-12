@@ -22,7 +22,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2.3.1
         with:
-          python-version: "3.9"
+          python-version: "3.10"
 
       - name: Install test dependencies
         run: pip install --constraint=.github/workflows/constraints.txt ansible yamllint ansible-lint
@@ -52,7 +52,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2.3.1
         with:
-          python-version: "3.9"
+          python-version: "3.10"
 
       - name: Install test dependencies
         run: pip3 install ansible molecule[docker] docker
