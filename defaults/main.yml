@@ -4,15 +4,15 @@ pyenv_env: "user"
 pyenv_path: "{% if pyenv_env == 'user' %}{{ ansible_env.HOME }}/pyenv{% else %}/usr/local/pyenv{% endif %}"
 pyenv_owner: "{{ ansible_env.USER }}"
 pyenv_setting_path: "{% if pyenv_env == 'user' %}~/.bashrc{% else %}/etc/profile.d/pyenv.sh{% endif %}"
-pyenv_update_git_install: false
+pyenv_update_git_install: true
 pyenv_enable_autocompletion: false
 pyenv_python_versions:
-  - 3.9.6
+  - 3.10.0
 pyenv_global:
-  - 3.9.6
+  - 3.10.0
 pyenv_virtualenvs:
   []
-  # - { venv_name: "latest", py_version: "3.9.6" }
+  # - { venv_name: "latest", py_version: "3.10.0" }
 # For a system install, the shims dir will not be writable by users, disable rehashing
 pyenv_init_options: "{% if pyenv_env != 'user' %}--no-rehash{% endif %}"
 
@@ -24,9 +24,6 @@ pyenv_uninstall_python_w_wrong_configure_opts: false
 
 pyenv_debian_packages:
   - build-essential
-  # On Ubuntu 12.04 build may fail with the following error:
-  #   python-build: wget (< 1.14) doesn't support Server Name Indication.
-  #   Please install curl (>= 7.18.1) and try again
   - curl
   - git
   - llvm
