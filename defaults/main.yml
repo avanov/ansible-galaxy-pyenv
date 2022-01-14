@@ -44,7 +44,7 @@ pyenv_redhat_packages:
   - make
   - git
   - gcc
-  - libselinux-python
+  - "{{ ( (ansible_facts.distribution_major_version | default(0) | int) < 8) | ternary('libselinux-python','python3-libselinux') }}"
   - zlib-devel
   - openssl-devel
   - bzip2-devel
