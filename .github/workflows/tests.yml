@@ -54,8 +54,12 @@ jobs:
         with:
           python-version: "3.10"
 
+      - name: Install ansible
+        run: |
+          pip install --constraint=.github/workflows/constraints.txt ansible
+
       - name: Install test dependencies
-        run: pip3 install ansible molecule[docker] docker
+        run: pip3 install molecule[docker] docker
 
       - name: Run Molecule tests
         run: molecule test
