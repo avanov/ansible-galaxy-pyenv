@@ -4,4 +4,4 @@
   become: true
 
   roles:
-    - staticdev.pyenv
+    - role: staticdev.pyenv
