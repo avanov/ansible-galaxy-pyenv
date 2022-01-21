@@ -3,5 +3,7 @@
   hosts: all
   become: true
 
-  roles:
-    - role: staticdev.pyenv
+  tasks:
+    - name: "Include staticdev.pyenv"
+      include_role:
+        name: "staticdev.pyenv"
