@@ -29,9 +29,9 @@ Here is the list of all variables and their default values:
 - `pyenv_env: "user"` (should be either `"user"` or `"system"`)
 - `pyenv_path: "{% if pyenv_env == 'user' %}{{ ansible_env.HOME }}/pyenv{% else %}/usr/local/pyenv{% endif %}"`
 - `pyenv_owner: "{{ ansible_env.USER }}"`
-- `pyenv_python_versions: [3.10.0]`
-- `pyenv_virtualenvs: [{ venv_name: latest, py_version: 3.10.0 }]`
-- `pyenv_global: [3.10.0]`
+- `pyenv_python_versions: [3.10.1]`
+- `pyenv_virtualenvs: [{ venv_name: latest, py_version: 3.10.1 }]`
+- `pyenv_global: [3.10.1]`
 - `pyenv_update_git_install: true` (get latest pyenv from git)
 - `pyenv_enable_autocompletion: false`
 - `pyenv_setting_path: "{% if pyenv_env == 'user' %}~/.bashrc{% else %}/etc/profile.d/pyenv.sh{% endif %}"`
@@ -54,15 +54,15 @@ Example Playbook
            pyenv_path: "{{ home }}/pyenv"
            pyenv_owner: "{{ instance_owner }}"
            pyenv_global:
-             - 3.10.0
+             - 3.10.1
              - 3.9.9
            pyenv_enable_autocompletion: false
            pyenv_python_versions:
-             - 3.10.0
+             - 3.10.1
              - 3.9.9
            pyenv_virtualenvs:
              - venv_name: latest_v310
-               py_version: 3.10.0
+               py_version: 3.10.1
              - venv_name: latest_v39
                py_version: 3.9.9
 
