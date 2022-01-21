@@ -9,6 +9,10 @@ name: Tests
   schedule:
     - cron: "0 7 * * 0"
 
+defaults:
+  run:
+    working-directory: 'staticdev.pyenv'
+
 jobs:
   lint:
     name: Lint
@@ -56,12 +60,12 @@ jobs:
 
       - name: Upgrade pip
         run: |
-          python3 -m pip install --constraint=staticdev.pyenv/.github/workflows/constraints.txt pip
+          python3 -m pip install --constraint=.github/workflows/constraints.txt pip
           python3 -m pip --version
 
       - name: Install test dependencies
         run: |
-          python3 -m pip install --constraint=staticdev.pyenv/.github/workflows/constraints.txt ansible molecule[docker] docker
+          python3 -m pip install --constraint=.github/workflows/constraints.txt ansible molecule[docker] docker
 
       - name: Run Molecule tests
         run: molecule test
