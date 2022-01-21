@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ansible-role-pyenv"
-version = "2.5.0"
+version = "2.5.1"
 description = "Ansible role to install pyenv."
 authors = ["staticdev <staticdev-support@protonmail.com>"]
 license = "MIT"
