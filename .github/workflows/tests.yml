@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3
         with:
           path: 'staticdev.pyenv'
 
@@ -49,7 +49,7 @@ jobs:
 
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3
         with:
           path: 'staticdev.pyenv'
 
