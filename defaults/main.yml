@@ -7,9 +7,9 @@ pyenv_setting_path: "{% if pyenv_env == 'user' %}~/.bashrc{% else %}/etc/profile
 pyenv_update_git_install: no
 pyenv_enable_autocompletion: no
 pyenv_python_versions:
-  - 3.5.0
+  - 3.10.2
 pyenv_virtualenvs:
-  - { venv_name: "latest", py_version: "3.5.0" }
+  - { venv_name: "latest", py_version: "3.10.2" }
 # For a system install, the shims dir will not be writable by users, disable rehashing
 pyenv_init_options: "{% if pyenv_env != 'user' %}--no-rehash{% endif %}"
 
@@ -18,6 +18,10 @@ pyenv_update: no
 # additional options for the build process, e.g "--enable-shared"
 pyenv_python_configure_opts: ""
 pyenv_uninstall_python_w_wrong_configure_opts: no
+
+# aditional option to pin the pyenv and pyenv-virtualenv version
+pyenv_git_ref: no
+pyenv_virtualenv_git_ref: no
 
 pyenv_debian_packages:
   - build-essential
@@ -44,7 +48,7 @@ pyenv_redhat_packages:
   - make
   - git
   - gcc
-  - "{{ ( (ansible_facts.distribution_major_version | default(0) | int) < 8) | ternary('libselinux-python','python3-libselinux') }}"
+  - "{{ (ansible_facts.distribution != 'Fedora' and ((ansible_facts.distribution_major_version | default(0) | int) < 8)) | ternary('libselinux-python','python3-libselinux') }}"
   - zlib-devel
   - openssl-devel
   - bzip2-devel
