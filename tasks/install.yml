@@ -1,22 +1,38 @@
 ---
+- name: Install PyEnv from git ref
+  git:
+    repo: https://github.com/pyenv/pyenv.git
+    dest: "{{ pyenv_path }}"
+    version: "{{ pyenv_git_ref }}"
+  when: pyenv_git_ref
+
 - name: Install PyEnv
   git:
     repo: https://github.com/pyenv/pyenv.git
     dest: "{{ pyenv_path }}"
     update: "{{ pyenv_update_git_install }}"
+  when: not pyenv_git_ref
+
+- name: Install PyEnv-virtualenv plugin from git ref
+  git:
+    repo: https://github.com/yyuu/pyenv-virtualenv.git
+    dest: "{{ pyenv_path }}/plugins/pyenv-virtualenv"
+    version: "{{ pyenv_virtualenv_git_ref }}"
+  when: pyenv_virtualenv_git_ref
 
 - name: Install PyEnv-virtualenv plugin
   git:
     repo: https://github.com/yyuu/pyenv-virtualenv.git
     dest: "{{ pyenv_path }}/plugins/pyenv-virtualenv"
     update: "{{ pyenv_update_git_install }}"
+  when: not pyenv_virtualenv_git_ref
 
 - name: Install PyEnv-update plugin
   git:
     repo: https://github.com/pyenv/pyenv-update.git
     dest: "{{ pyenv_path }}/plugins/pyenv-update"
     update: "{{ pyenv_update_git_install }}"
-  when: pyenv_update
+  when: pyenv_update and not pyenv_git_ref
 
 - name: Install .pyenvrc
   template:
