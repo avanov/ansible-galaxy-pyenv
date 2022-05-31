@@ -1,5 +1,5 @@
 pip==22.1.1
 ansible==5.8.0
 yamllint==1.26.3
-ansible-lint==6.2.1
+ansible-lint==6.2.2
 poetry==1.1.13
