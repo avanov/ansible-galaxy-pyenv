@@ -10,13 +10,13 @@
         name: "staticdev.pyenv"
       vars:
         pyenv_global:
-          - 3.10.1
+          - 3.10.6
           - 3.9.9
         pyenv_python_versions:
-          - 3.10.1
+          - 3.10.6
           - 3.9.9
         pyenv_virtualenvs:
           - venv_name: latest_v310
-            py_version: 3.10.1
+            py_version: 3.10.6
           - venv_name: latest_v39
             py_version: 3.9.9
