@@ -11,7 +11,7 @@ name: Tests
 
 defaults:
   run:
-    working-directory: 'staticdev.pyenv'
+    working-directory: "staticdev.pyenv"
 
 jobs:
   lint:
@@ -21,7 +21,7 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v3
         with:
-          path: 'staticdev.pyenv'
+          path: "staticdev.pyenv"
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -51,7 +51,7 @@ jobs:
       - name: Check out the repository
         uses: actions/checkout@v3
         with:
-          path: 'staticdev.pyenv'
+          path: "staticdev.pyenv"
 
       - name: Set up Python
         uses: actions/setup-python@v4
