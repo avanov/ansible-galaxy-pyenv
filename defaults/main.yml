@@ -20,13 +20,12 @@ pyenv_python_configure_opts: ""
 pyenv_uninstall_python_w_wrong_configure_opts: no
 
 pyenv_debian_packages:
-  - build-essential
   # On Ubuntu 12.04 build may fail with the following error:
   #   python-build: wget (< 1.14) doesn't support Server Name Indication.
   #   Please install curl (>= 7.18.1) and try again
+  - build-essential
   - curl
   - git
-  - llvm
   - libbz2-dev
   - libffi-dev
   - liblzma-dev
@@ -35,6 +34,10 @@ pyenv_debian_packages:
   - libreadline-dev
   - libsqlite3-dev
   - libssl-dev
+  - libxml2-dev
+  - libxmlsec1-dev
+  - llvm
+  - make
   - python3-openssl
   - tk-dev
   - wget
@@ -52,6 +55,14 @@ pyenv_redhat_packages:
   - libffi-devel
   - sqlite-devel
   - gdbm-devel
+  - bzip2
+  - sqlite
+  - tk-devel
+  - xz-devel
 pyenv_osx_packages:
+  - openssl
   - readline
+  - sqlite3
+  - tcl-tk
   - xz
+  - zlib
