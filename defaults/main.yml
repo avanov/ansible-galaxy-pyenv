@@ -3,6 +3,7 @@
 pyenv_env: "user"
 pyenv_path: "{% if pyenv_env == 'user' %}{{ ansible_env.HOME }}/pyenv{% else %}/usr/local/pyenv{% endif %}"
 pyenv_owner: "{{ ansible_env.USER }}"
+pyenv_owner_group: "{{ pyenv_owner }}"
 pyenv_setting_path: "{% if pyenv_env == 'user' %}~/.bashrc{% else %}/etc/profile.d/pyenv.sh{% endif %}"
 pyenv_update_git_install: true
 pyenv_enable_autocompletion: false

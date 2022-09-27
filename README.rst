@@ -29,6 +29,7 @@ Here is the list of all variables and their default values:
 - `pyenv_env: "user"` (should be either `"user"` or `"system"`)
 - `pyenv_path: "{% if pyenv_env == 'user' %}{{ ansible_env.HOME }}/pyenv{% else %}/usr/local/pyenv{% endif %}"`
 - `pyenv_owner: "{{ ansible_env.USER }}"`
+- `pyenv_owner_group: "{{ pyenv_owner }}"`
 - `pyenv_python_versions: [3.10.6]`
 - `pyenv_virtualenvs: [{ venv_name: latest, py_version: 3.10.6 }]`
 - `pyenv_global: [3.10.6]`
