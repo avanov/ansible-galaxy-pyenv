@@ -1,57 +1,57 @@
 ---
 - name: Install PyEnv
-  git:
+  ansible.builtin.git:
     repo: https://github.com/pyenv/pyenv.git
     dest: "{{ pyenv_path }}"
     update: "{{ pyenv_update_git_install }}"
 
 - name: Install PyEnv-virtualenv plugin
-  git:
+  ansible.builtin.git:
     repo: https://github.com/yyuu/pyenv-virtualenv.git
     dest: "{{ pyenv_path }}/plugins/pyenv-virtualenv"
     update: "{{ pyenv_update_git_install }}"
 
 - name: Install PyEnv-update plugin
-  git:
+  ansible.builtin.git:
     repo: https://github.com/pyenv/pyenv-update.git
     dest: "{{ pyenv_path }}/plugins/pyenv-update"
     update: "{{ pyenv_update_git_install }}"
   when: pyenv_update
 
 - name: Install .pyenvrc
-  template:
+  ansible.builtin.template:
     src: ".pyenvrc.j2"
     dest: "{{ pyenv_path }}/.pyenvrc"
     owner: "{{ pyenv_owner }}"
     mode: "0644"
 
 - name: "Load pyenv env variables in {{ pyenv_setting_path }}"
-  lineinfile: dest="{{ pyenv_setting_path }}"
+  ansible.builtin.lineinfile: dest="{{ pyenv_setting_path }}"
     regexp="\.pyenvrc$"
     line="source {{ pyenv_path }}/.pyenvrc"
     state=present
     create=yes
 
 - name: "Add pyenv autocomplete in {{ pyenv_setting_path }}"
-  lineinfile: dest="{{ pyenv_setting_path }}"
+  ansible.builtin.lineinfile: dest="{{ pyenv_setting_path }}"
     regexp="pyenv\.bash$"
     line="source {{ pyenv_path }}/completions/pyenv.bash"
     state=present
   when: pyenv_enable_autocompletion
 
 - name: Update Pyenv interpreter list
-  shell: . {{ pyenv_path }}/.pyenvrc && pyenv update
+  ansible.builtin.shell: . {{ pyenv_path }}/.pyenvrc && pyenv update
   when: pyenv_update
 
 - name: Uninstall existing Python interpreters w/ wrong compilation flags
-  shell: ". {{ pyenv_path }}/.pyenvrc && pyenv uninstall -f {{ item }}"
+  ansible.builtin.shell: ". {{ pyenv_path }}/.pyenvrc && pyenv uninstall -f {{ item }}"
   args:
     removes: "{{ pyenv_path }}/versions/{{ item }}/bin/python"
   loop: "{{ ansible_local['pyenv_python_installations']['to_reinstall'] | default([]) }}"
   when: pyenv_uninstall_python_w_wrong_configure_opts
 
 - name: "Install Python interpreters {{ pyenv_python_versions }}"
-  shell: ". {{ pyenv_path }}/.pyenvrc && pyenv install {{ item }}"
+  ansible.builtin.shell: ". {{ pyenv_path }}/.pyenvrc && pyenv install {{ item }}"
   environment:
     PYTHON_CONFIGURE_OPTS: "{{ pyenv_python_configure_opts }}"
   args:
@@ -59,13 +59,13 @@
   with_items: "{{ pyenv_python_versions }}"
 
 - name: Create virtual environments
-  shell:
+  ansible.builtin.shell:
     . {{ pyenv_path }}/.pyenvrc && pyenv virtualenv {{ item.py_version }} {{ item.venv_name }}
     creates="{{ pyenv_path }}/versions/{{ item.py_version }}/envs/{{ item.venv_name }}/bin/python"
   with_items: "{{ pyenv_virtualenvs }}"
 
 - name: "Set pyenv global {{ pyenv_global }}"
-  shell: . {{ pyenv_path }}/.pyenvrc && pyenv global {{ pyenv_global | join(' ') }} && pyenv rehash
+  ansible.builtin.shell: . {{ pyenv_path }}/.pyenvrc && pyenv global {{ pyenv_global | join(' ') }} && pyenv rehash
   args:
     creates: "{{ pyenv_path }}/version"
   when: pyenv_global is defined
