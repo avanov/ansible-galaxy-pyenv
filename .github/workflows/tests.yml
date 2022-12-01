@@ -45,7 +45,8 @@ jobs:
         distro:
           - debian11
           - debian10
-          - ubuntu2204
+          # https://github.com/geerlingguy/docker-ubuntu2204-ansible/issues/6
+          # - ubuntu2204
           - ubuntu2004
 
     steps:

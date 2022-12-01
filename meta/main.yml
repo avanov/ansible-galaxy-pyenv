@@ -11,14 +11,16 @@ galaxy_info:
     - name: macOS
       versions:
         - Sierra
+
     - name: Debian
       versions:
         - buster
         - bullseye
+
     - name: Ubuntu
       versions:
+        # - jammy
         - focal
-        - jammy
 
   categories:
     - development
