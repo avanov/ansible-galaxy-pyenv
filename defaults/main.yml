@@ -9,12 +9,12 @@ pyenv_update_git_install: true
 pyenv_enable_autocompletion: false
 pyenv_enable_virtualenvs: true
 pyenv_python_versions:
-  - 3.10.6
+  - 3.11.0
 pyenv_global:
-  - 3.10.6
+  - 3.11.0
 pyenv_virtualenvs:
   []
-  # - { venv_name: "latest", py_version: "3.10.6" }
+  # - { venv_name: "latest", py_version: "3.11.0" }
 # For a system install, the shims dir will not be writable by users, disable rehashing
 pyenv_init_options: "{% if pyenv_env != 'user' %}--no-rehash{% endif %}"
 
