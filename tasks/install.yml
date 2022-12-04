@@ -10,6 +10,7 @@
     repo: https://github.com/yyuu/pyenv-virtualenv.git
     dest: "{{ pyenv_path }}/plugins/pyenv-virtualenv"
     update: "{{ pyenv_update_git_install }}"
+  when: pyenv_enable_virtualenvs
 
 - name: Install PyEnv-update plugin
   ansible.builtin.git:
@@ -63,6 +64,7 @@
     . {{ pyenv_path }}/.pyenvrc && pyenv virtualenv {{ item.py_version }} {{ item.venv_name }}
     creates="{{ pyenv_path }}/versions/{{ item.py_version }}/envs/{{ item.venv_name }}/bin/python"
   with_items: "{{ pyenv_virtualenvs }}"
+  when: pyenv_enable_virtualenvs
 
 - name: "Set pyenv global {{ pyenv_global }}"
   ansible.builtin.shell: . {{ pyenv_path }}/.pyenvrc && pyenv global {{ pyenv_global | join(' ') }} && pyenv rehash

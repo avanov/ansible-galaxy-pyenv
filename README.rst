@@ -35,6 +35,7 @@ Here is the list of all variables and their default values:
 - `pyenv_global: [3.10.6]`
 - `pyenv_update_git_install: true` (get latest pyenv from git)
 - `pyenv_enable_autocompletion: false`
+- `pyenv_enable_virtualenvs: true`
 - `pyenv_setting_path: "{% if pyenv_env == 'user' %}~/.bashrc{% else %}/etc/profile.d/pyenv.sh{% endif %}"`
 
 
