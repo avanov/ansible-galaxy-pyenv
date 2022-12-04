@@ -58,11 +58,6 @@ None.
           py_version: 3.10.6
 ```
 
-## Contributing
-
-Contributions are very welcome.
-To learn more, see the [Contributor Guide].
-
 ## License
 
 Distributed under the terms of the [MIT] license,
@@ -73,7 +68,6 @@ _Ansible role Pyenv_ is free and open source software.
 [staticdev]. Heavily based on Maxim Avanov's [avanov.pyenv]
 
 [avanov.pyenv]: https://galaxy.ansible.com/avanov/pyenv
-[contributor guide]: CONTRIBUTING.rst
 [mit]: https://opensource.org/licenses/MIT
 [pyenv]: https://github.com/yyuu/pyenv
 [staticdev]: https://github.com/staticdev
