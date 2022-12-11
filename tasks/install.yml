@@ -25,14 +25,14 @@
 - name: Install .pyenvrc
   ansible.builtin.template:
     src: ".pyenvrc.j2"
-    dest: "{{ pyenv_path }}/.pyenvrc"
+    dest: "{{ pyenv_rc_path }}/.pyenvrc"
     owner: "{{ pyenv_owner }}"
     mode: "0644"
 
 - name: "Load pyenv env variables in {{ pyenv_setting_path }}"
   ansible.builtin.lineinfile: dest="{{ pyenv_setting_path }}"
     regexp="\.pyenvrc$"
-    line="source {{ pyenv_path }}/.pyenvrc"
+    line="source {{ pyenv_rc_path }}/.pyenvrc"
     state=present
     create=yes
 
@@ -44,18 +44,18 @@
   when: pyenv_enable_autocompletion
 
 - name: Update Pyenv interpreter list
-  ansible.builtin.shell: . {{ pyenv_path }}/.pyenvrc && pyenv update
+  ansible.builtin.shell: . {{ pyenv_rc_path }}/.pyenvrc && pyenv update
   when: pyenv_update
 
 - name: Uninstall existing Python interpreters w/ wrong compilation flags
-  ansible.builtin.shell: ". {{ pyenv_path }}/.pyenvrc && pyenv uninstall -f {{ item }}"
+  ansible.builtin.shell: ". {{ pyenv_rc_path }}/.pyenvrc && pyenv uninstall -f {{ item }}"
   args:
     removes: "{{ pyenv_path }}/versions/{{ item }}/bin/python"
   loop: "{{ ansible_local['pyenv_python_installations']['to_reinstall'] | default([]) }}"
   when: pyenv_uninstall_python_w_wrong_configure_opts
 
 - name: "Install Python interpreters {{ pyenv_python_versions }}"
-  ansible.builtin.shell: ". {{ pyenv_path }}/.pyenvrc && pyenv install {{ item }}"
+  ansible.builtin.shell: ". {{ pyenv_rc_path }}/.pyenvrc && pyenv install {{ item }}"
   environment:
     PYTHON_CONFIGURE_OPTS: "{{ pyenv_python_configure_opts }}"
   args:
@@ -64,13 +64,13 @@
 
 - name: Create virtual environments
   ansible.builtin.shell:
-    . {{ pyenv_path }}/.pyenvrc && pyenv virtualenv {{ item.py_version }} {{ item.venv_name }}
+    . {{ pyenv_rc_path }}/.pyenvrc && pyenv virtualenv {{ item.py_version }} {{ item.venv_name }}
     creates="{{ pyenv_path }}/versions/{{ item.py_version }}/envs/{{ item.venv_name }}/bin/python"
   with_items: "{{ pyenv_virtualenvs }}"
   when: pyenv_enable_virtualenvs
 
 - name: "Set pyenv global {{ pyenv_global }}"
-  ansible.builtin.shell: . {{ pyenv_path }}/.pyenvrc && pyenv global {{ pyenv_global | join(' ') }} && pyenv rehash
+  ansible.builtin.shell: . {{ pyenv_rc_path }}/.pyenvrc && pyenv global {{ pyenv_global | join(' ') }} && pyenv rehash
   args:
     creates: "{{ pyenv_path }}/version"
   when: pyenv_global is defined
