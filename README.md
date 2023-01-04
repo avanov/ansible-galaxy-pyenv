@@ -20,6 +20,9 @@ None.
 
 Here is the list of all variables and their default values:
 
+- `pyenv_version: "HEAD"` - check https://github.com/pyenv/pyenv/releases
+- `pyenv_virtualenv_version: "HEAD"` - check https://github.com/pyenv/pyenv-virtualenv/releases
+- `pyenv_update_version: "HEAD"` - usually do not have releases but one can specify a commit hash
 - `pyenv_env: "user"` (should be either `"user"` or `"system"`)
 - `pyenv_path: "{% if pyenv_env == 'user' %}{{ ansible_env.HOME }}/pyenv{% else %}/usr/local/pyenv{% endif %}"`
 - `pyenv_owner: "{{ ansible_env.USER }}"`
@@ -42,6 +45,9 @@ None.
 - hosts: servers
   roles:
     - role: staticdev.pyenv
+      pyenv_version: "v2.3.9"
+      pyenv_virtualenv_version: "v1.1.5"
+      pyenv_update_version: "810db78"
       pyenv_path: "{{ home }}/pyenv"
       pyenv_owner: "{{ instance_owner }}"
       pyenv_global:

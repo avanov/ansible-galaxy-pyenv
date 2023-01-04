@@ -22,10 +22,11 @@ galaxy_info:
         # - jammy
         - focal
 
-  categories:
+  galaxy_tags:
     - development
     - pyenv
     - python
     - system
     - workstation
+
 dependencies: []

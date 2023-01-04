@@ -1,5 +1,8 @@
 ---
 # defaults file for pyenv
+pyenv_version: "HEAD"
+pyenv_virtualenv_version: "HEAD"
+pyenv_update_version: "HEAD"
 pyenv_env: "user"
 pyenv_path: "{% if pyenv_env == 'user' %}{{ ansible_env.HOME }}/pyenv{% else %}/usr/local/pyenv{% endif %}"
 pyenv_owner: "{{ ansible_env.USER }}"
@@ -46,7 +49,7 @@ pyenv_redhat_packages:
   - make
   - git
   - gcc
-  - "{{ ( (ansible_facts.distribution_major_version | default(0) | int) < 8) | ternary('libselinux-python','python3-libselinux') }}"
+  - "{{ ((ansible_facts.distribution_major_version | default(0) | int) < 8) | ternary('libselinux-python', 'python3-libselinux') }}"
   - zlib-devel
   - openssl-devel
   - bzip2-devel
