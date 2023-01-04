@@ -1,21 +1,27 @@
 ---
-- import_tasks: custom_facts.yml
+- name: Load custom facts.
+  ansible.builtin.import_tasks: custom_facts.yml
   become: true
 
-- import_tasks: Darwin.yml
+- name: Run Darwin specific tasks.
+  ansible.builtin.import_tasks: Darwin.yml
   when: ansible_os_family == "Darwin"
 
-- import_tasks: Debian.yml
+- name: Run Debian specific tasks.
+  ansible.builtin.import_tasks: Debian.yml
   when: ansible_os_family == "Debian"
 
-- import_tasks: RedHat.yml
+- name: Run RedHat specific tasks.
+  ansible.builtin.import_tasks: RedHat.yml
   when: ansible_os_family == "RedHat"
 
-- import_tasks: install.yml
+- name: Install pyenv on user level.
+  ansible.builtin.import_tasks: install.yml
   become: true
   become_user: "{{ pyenv_owner }}"
   when: pyenv_env == "user"
 
-- import_tasks: install.yml
+- name: Install pyenv on system level.
+  ansible.builtin.import_tasks: install.yml
   become: true
   when: pyenv_env == "system"
