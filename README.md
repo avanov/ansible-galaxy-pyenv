@@ -25,6 +25,7 @@ Here is the list of all variables and their default values:
 - `pyenv_update_version: "HEAD"` - usually do not have releases but one can specify a commit hash
 - `pyenv_env: "user"` (should be either `"user"` or `"system"`)
 - `pyenv_path: "{% if pyenv_env == 'user' %}{{ ansible_env.HOME }}/pyenv{% else %}/usr/local/pyenv{% endif %}"`
+- `pyenvrc_path: "{{ pyenv_path }}"`
 - `pyenv_owner: "{{ ansible_env.USER }}"`
 - `pyenv_owner_group: "{{ pyenv_owner }}"`
 - `pyenv_python_versions: [3.11.0]`
@@ -48,7 +49,9 @@ None.
       pyenv_version: "v2.3.9"
       pyenv_virtualenv_version: "v1.1.5"
       pyenv_update_version: "810db78"
-      pyenv_path: "{{ home }}/pyenv"
+      pyenv_setting_path: "{{ ansible_env.HOME }}/.env"
+      pyenv_path: "{{ ansible_env.HOME }}/.pyenv"
+      pyenvrc_path: "{{ ansible_env.HOME }}"
       pyenv_owner: "{{ instance_owner }}"
       pyenv_global:
         - 3.11.0
