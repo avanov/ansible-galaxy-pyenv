@@ -1,6 +1,6 @@
 ---
 - name: Install development packages necessary for building Python
-  homebrew:
+  community.general.packaging.os.homebrew:
     name: "{{ pyenv_osx_packages }}"
     state: present
   become: false

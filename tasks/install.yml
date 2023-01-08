@@ -40,17 +40,21 @@
   when: pyenv_setting_path is defined
 
 - name: "Load pyenv env variables in {{ pyenv_shellrc_file }}"
-  ansible.builtin.lineinfile: dest="{{ pyenv_shellrc_file }}"
-    regexp="\.pyenvrc$"
-    line="source {{ pyenvrc_path }}/.pyenvrc"
-    state=present
-    create=yes
+  ansible.builtin.lineinfile:
+    dest: "{{ pyenv_shellrc_file }}"
+    regexp: "\\.pyenvrc$"
+    line: "source {{ pyenvrc_path }}/.pyenvrc"
+    state: present
+    mode: 0644
+    create: true
 
 - name: "Add pyenv autocomplete in {{ pyenv_shellrc_file }}"
-  ansible.builtin.lineinfile: dest="{{ pyenv_shellrc_file }}"
-    regexp="pyenv\.bash$"
-    line="source {{ pyenv_path }}/completions/pyenv.bash"
-    state=present
+  ansible.builtin.lineinfile:
+    dest: "{{ pyenv_shellrc_file }}"
+    regexp: "pyenv\\.bash$"
+    line: "source {{ pyenv_path }}/completions/pyenv.bash"
+    mode: 0644
+    state: present
   when: pyenv_enable_autocompletion
 
 - name: Update Pyenv interpreter list

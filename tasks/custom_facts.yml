@@ -3,6 +3,7 @@
   ansible.builtin.file:
     path: /etc/ansible/facts.d
     state: directory
+    mode: 0755
 
 - name: Copy over check-configure-options.py
   ansible.builtin.template:
