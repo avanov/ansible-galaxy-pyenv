@@ -34,7 +34,7 @@ Here is the list of all variables and their default values:
 - `pyenv_update_git_install: true` (get latest pyenv from git)
 - `pyenv_enable_autocompletion: false`
 - `pyenv_enable_virtualenvs: true`
-- `pyenv_setting_path: "{% if pyenv_env == 'user' %}~/.bashrc{% else %}/etc/profile.d/pyenv.sh{% endif %}"`
+- `pyenv_shellrc_file "{% if pyenv_env == 'user' %}~/.bashrc{% else %}/etc/profile.d/pyenv.sh{% endif %}"`
 
 ## Dependencies
 
@@ -49,7 +49,7 @@ None.
       pyenv_version: "v2.3.9"
       pyenv_virtualenv_version: "v1.1.5"
       pyenv_update_version: "810db78"
-      pyenv_setting_path: "{{ ansible_env.HOME }}/.env"
+      pyenv_shellrc_file: "{{ ansible_env.HOME }}/.shrc"
       pyenv_path: "{{ ansible_env.HOME }}/.pyenv"
       pyenvrc_path: "{{ ansible_env.HOME }}"
       pyenv_owner: "{{ instance_owner }}"

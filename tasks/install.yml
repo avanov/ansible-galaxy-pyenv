@@ -29,15 +29,25 @@
     owner: "{{ pyenv_owner }}"
     mode: "0644"
 
-- name: "Load pyenv env variables in {{ pyenv_setting_path }}"
-  ansible.builtin.lineinfile: dest="{{ pyenv_setting_path }}"
+- name: Use legacy variable pyenv_setting_path if available
+  ansible.builtin.set_fact:
+    pyenv_shellrc_file: "{{ pyenv_setting_path }}"
+  when: pyenv_setting_path is defined
+
+- name: Print deprecation warning if pyenv_setting_path defined
+  ansible.builtin.debug:
+    msg: pyenv_setting_path is deprecated, use pyenv_shellrc_file instead
+  when: pyenv_setting_path is defined
+
+- name: "Load pyenv env variables in {{ pyenv_shellrc_file }}"
+  ansible.builtin.lineinfile: dest="{{ pyenv_shellrc_file }}"
     regexp="\.pyenvrc$"
     line="source {{ pyenvrc_path }}/.pyenvrc"
     state=present
     create=yes
 
-- name: "Add pyenv autocomplete in {{ pyenv_setting_path }}"
-  ansible.builtin.lineinfile: dest="{{ pyenv_setting_path }}"
+- name: "Add pyenv autocomplete in {{ pyenv_shellrc_file }}"
+  ansible.builtin.lineinfile: dest="{{ pyenv_shellrc_file }}"
     regexp="pyenv\.bash$"
     line="source {{ pyenv_path }}/completions/pyenv.bash"
     state=present
