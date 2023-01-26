@@ -2,10 +2,11 @@
 galaxy_info:
   role_name: pyenv
   author: staticdev
+  namespace: staticdev
   description: Ansible Galaxy role for pyenv.
-  company:
+  company: StaticDev
   license: MIT
-  min_ansible_version: 2.10
+  min_ansible_version: "2.10"
 
   platforms:
     - name: macOS
