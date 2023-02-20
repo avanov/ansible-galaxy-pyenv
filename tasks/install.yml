@@ -59,6 +59,8 @@
 
 - name: Update Pyenv interpreter list
   ansible.builtin.shell: . {{ pyenvrc_path }}/.pyenvrc && pyenv update
+  register: output
+  changed_when: "output.rc == 0"
   when: pyenv_update
 
 - name: Uninstall existing Python interpreters w/ wrong compilation flags
