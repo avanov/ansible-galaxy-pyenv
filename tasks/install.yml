@@ -85,8 +85,23 @@
   with_items: "{{ pyenv_virtualenvs }}"
   when: pyenv_enable_virtualenvs
 
-- name: "Set pyenv global {{ pyenv_global }}"
-  ansible.builtin.shell: . {{ pyenvrc_path }}/.pyenvrc && pyenv global {{ pyenv_global | join(' ') }} && pyenv rehash
-  args:
-    creates: "{{ pyenv_path }}/version"
+- name: Update the pyenv globals
   when: pyenv_global is defined
+  vars:
+    pyenv_global_versions_path: "{{ pyenv_path }}/version"
+  block:
+    - name: "Does pyenv globals file exist?"
+      stat:
+        path: "{{ pyenv_global_versions_path }}"
+      register: _pyenv_globals_file
+    - name: "Read the pyenv global versions"
+      slurp:
+        src: "{{ pyenv_global_versions_path }}"
+      register: _pyenv_globals_file_content
+      when: _pyenv_globals_file.stat.exists
+    - name: "Set pyenv global {{ pyenv_global }}"
+      ansible.builtin.shell: . {{ pyenvrc_path }}/.pyenvrc && pyenv global {{ pyenv_global | join(' ') }} && pyenv rehash
+      when:
+        - _pyenv_globals_file.stat.exists
+        - (_pyenv_globals_file_content.content | b64decode | split('\n') | select() | list) != pyenv_global
+
