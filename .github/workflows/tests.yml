@@ -43,6 +43,7 @@ jobs:
     strategy:
       matrix:
         distro:
+          - debian12
           - debian11
           - debian10
           # https://github.com/geerlingguy/docker-ubuntu2204-ansible/issues/6
