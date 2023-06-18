@@ -6,10 +6,8 @@ pyenv_owner: "{{ ansible_env.USER }}"
 pyenv_setting_path: "{% if pyenv_env == 'user' %}~/.bashrc{% else %}/etc/profile.d/pyenv.sh{% endif %}"
 pyenv_update_git_install: no
 pyenv_enable_autocompletion: no
-pyenv_python_versions:
-  - 3.5.0
-pyenv_virtualenvs:
-  - { venv_name: "latest", py_version: "3.5.0" }
+pyenv_python_versions: []
+pyenv_virtualenvs: []
 # For a system install, the shims dir will not be writable by users, disable rehashing
 pyenv_init_options: "{% if pyenv_env != 'user' %}--no-rehash{% endif %}"
 
