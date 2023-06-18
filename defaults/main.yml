@@ -17,6 +17,10 @@ pyenv_update: no
 pyenv_python_configure_opts: ""
 pyenv_uninstall_python_w_wrong_configure_opts: no
 
+# aditional option to pin the pyenv and pyenv-virtualenv version
+pyenv_git_ref: ""
+pyenv_virtualenv_git_ref: ""
+
 pyenv_debian_packages:
   - build-essential
   # On Ubuntu 12.04 build may fail with the following error:
