@@ -6,7 +6,7 @@ galaxy_info:
   description: Ansible Galaxy role for pyenv.
   company: StaticDev
   license: MIT
-  min_ansible_version: "2.10"
+  min_ansible_version: "2.11"
 
   platforms:
     - name: macOS
@@ -20,7 +20,7 @@ galaxy_info:
 
     - name: Ubuntu
       versions:
-        # - jammy
+        - jammy
         - focal
 
   galaxy_tags:
