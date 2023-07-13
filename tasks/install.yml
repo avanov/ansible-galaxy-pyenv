@@ -80,8 +80,6 @@
 
 - name: "Install Python interpreters {{ pyenv_python_versions }}"
   ansible.builtin.shell: ". {{ pyenvrc_path }}/.pyenvrc && pyenv install {{ item }}"
-  environment:
-    PYTHON_CONFIGURE_OPTS: "{{ pyenv_python_configure_opts }}"
   args:
     creates: "{{ pyenv_path }}/versions/{{ item }}/bin/python"
   with_items: "{{ pyenv_python_versions }}"
