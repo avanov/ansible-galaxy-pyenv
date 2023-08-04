@@ -102,6 +102,9 @@
     - name: "Set pyenv global {{ pyenv_global }}"
       ansible.builtin.shell: . {{ pyenvrc_path }}/.pyenvrc && pyenv global {{ pyenv_global | join(' ') }} && pyenv rehash
       changed_when: true
-      when:
-        - _pyenv_globals_file.stat.exists
-        - (_pyenv_globals_file_content.content | b64decode | split('\n') | select() | list) != pyenv_global
+      when: >
+        (
+          _pyenv_globals_file.stat.exists
+          and (_pyenv_globals_file_content.content | b64decode | split('\n') | select() | list) != pyenv_global
+        )
+        or not _pyenv_globals_file.stat.exists
