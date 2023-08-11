@@ -46,25 +46,26 @@ None.
 - hosts: servers
   roles:
     - role: staticdev.pyenv
-      pyenv_version: "v2.3.9"
-      pyenv_virtualenv_version: "v1.1.5"
-      pyenv_update_version: "810db78"
-      pyenv_shellrc_file: "{{ ansible_env.HOME }}/.shrc"
-      pyenv_path: "{{ ansible_env.HOME }}/.pyenv"
-      pyenvrc_path: "{{ ansible_env.HOME }}"
-      pyenv_owner: "{{ instance_owner }}"
-      pyenv_global:
-        - 3.11.4
-        - 3.10.12
-      pyenv_enable_autocompletion: false
-      pyenv_python_versions:
-        - 3.11.4
-        - 3.10.12
-      pyenv_virtualenvs:
-        - venv_name: latest_v311
-          py_version: 3.11.4
-        - venv_name: latest_v310
-          py_version: 3.10.12
+      vars:
+        pyenv_version: "v2.3.9"
+        pyenv_virtualenv_version: "v1.1.5"
+        pyenv_update_version: "810db78"
+        pyenv_shellrc_file: "{{ ansible_env.HOME }}/.shrc"
+        pyenv_path: "{{ ansible_env.HOME }}/.pyenv"
+        pyenvrc_path: "{{ ansible_env.HOME }}"
+        pyenv_owner: "{{ instance_owner }}"
+        pyenv_global:
+          - 3.11.4
+          - 3.10.12
+        pyenv_enable_autocompletion: false
+        pyenv_python_versions:
+          - 3.11.4
+          - 3.10.12
+        pyenv_virtualenvs:
+          - venv_name: latest_v311
+            py_version: 3.11.4
+          - venv_name: latest_v310
+            py_version: 3.10.12
 ```
 
 ## License
