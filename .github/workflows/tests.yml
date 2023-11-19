@@ -26,7 +26,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: "3.12"
 
       - name: Install test dependencies
         run: pip install --constraint=.github/workflows/constraints.txt ansible yamllint ansible-lint
@@ -57,7 +57,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: "3.12"
 
       - name: Upgrade pip
         run: |
@@ -66,7 +66,7 @@ jobs:
 
       - name: Install test dependencies
         run: |
-          python3 -m pip install --constraint=.github/workflows/constraints.txt ansible 'molecule-plugins[podman]' podman
+          python3 -m pip install --constraint=.github/workflows/constraints.txt ansible 'molecule-plugins[podman]'
 
       - name: Run Molecule tests
         run: molecule test
