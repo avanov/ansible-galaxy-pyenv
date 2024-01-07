@@ -28,9 +28,9 @@ Here is the list of all variables and their default values:
 - `pyenvrc_path: "{{ pyenv_path }}"`
 - `pyenv_owner: "{{ ansible_facts.user_id }}"`
 - `pyenv_owner_group: "{{ pyenv_owner }}"`
-- `pyenv_python_versions: [3.11.4]`
-- `pyenv_virtualenvs: [{ venv_name: latest, py_version: 3.11.4 }]`
-- `pyenv_global: [3.11.4]`
+- `pyenv_python_versions: [3.12.1]`
+- `pyenv_virtualenvs: [{ venv_name: latest, py_version: 3.12.1 }]`
+- `pyenv_global: [3.12.1]`
 - `pyenv_update_git_install: true` (get latest pyenv from git)
 - `pyenv_enable_autocompletion: false`
 - `pyenv_enable_virtualenvs: true`
@@ -76,17 +76,17 @@ None.
         pyenvrc_path: "{{ ansible_env.HOME }}"
         pyenv_owner: "{{ instance_owner }}"
         pyenv_global:
-          - 3.11.4
-          - 3.10.12
+          - 3.12.1
+          - 3.11.7
         pyenv_enable_autocompletion: false
         pyenv_python_versions:
-          - 3.11.4
-          - 3.10.12
+          - 3.12.1
+          - 3.11.7
         pyenv_virtualenvs:
+          - venv_name: latest_v312
+            py_version: 3.12.1
           - venv_name: latest_v311
-            py_version: 3.11.4
-          - venv_name: latest_v310
-            py_version: 3.10.12
+            py_version: 3.11.7
         pyenv_make_opts: "-j4"
         pyenv_python_configure_opts: "--enable-optimizations --with-lto --with-ensurepip=upgrade"
         pyenv_python_cflags: "-march=native -mtune=native"
