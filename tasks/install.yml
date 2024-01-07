@@ -29,6 +29,14 @@
     owner: "{{ pyenv_owner }}"
     mode: "0644"
 
+- name: Install custom .pyenvrc
+  ansible.builtin.copy:
+    src: "{{ pyenv_custom_pyenvrc_file }}"
+    dest: "{{ pyenvrc_path }}/.pyenvrc.custom"
+    owner: "{{ pyenv_owner }}"
+    mode: "0644"
+  when: pyenv_custom_pyenvrc_file is defined
+
 - name: Use legacy variable pyenv_setting_path if available
   ansible.builtin.set_fact:
     pyenv_shellrc_file: "{{ pyenv_setting_path }}"
@@ -71,9 +79,7 @@
   when: pyenv_uninstall_python_w_wrong_configure_opts
 
 - name: "Install Python interpreters {{ pyenv_python_versions }}"
-  ansible.builtin.shell: ". {{ pyenvrc_path }}/.pyenvrc && pyenv install {{ item }}"
-  environment:
-    PYTHON_CONFIGURE_OPTS: "{{ pyenv_python_configure_opts }}"
+  ansible.builtin.shell: ". {{ pyenvrc_path }}/.pyenvrc && pyenv install {{ pyenv_install_extra_opts }} {{ item }}"
   args:
     creates: "{{ pyenv_path }}/versions/{{ item }}/bin/python"
   with_items: "{{ pyenv_python_versions }}"

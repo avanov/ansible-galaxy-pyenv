@@ -2,5 +2,63 @@
 # -------------------------------------
 export PYENV_ROOT="{{ pyenv_path }}"
 export PATH="$PYENV_ROOT/bin:$PATH"
+{% if pyenv_tmpdir is defined %}
+export TMPDIR="{{ pyenv_tmpdir }}"
+{% endif %}
+{% if pyenv_python_build_build_path is defined %}
+export PYTHON_BUILD_BUILD_PATH="{{ pyenv_python_build_build_path }}"
+{% endif %}
+{% if pyenv_python_build_cache_path is defined %}
+export PYTHON_BUILD_CACHE_PATH="{{ pyenv_python_build_cache_path }}"
+{% endif %}
+{% if pyenv_python_build_mirror_url is defined %}
+export PYTHON_BUILD_MIRROR_URL="{{ pyenv_python_build_mirror_url }}"
+{% endif %}
+{% if pyenv_python_build_mirror_url_skip_checksum is defined %}
+export PYTHON_BUILD_MIRROR_URL_SKIP_CHECKSUM="{{ pyenv_python_build_mirror_url_skip_checksum }}"
+{% endif %}
+{% if pyenv_python_build_skip_mirror is defined %}
+export PYTHON_BUILD_SKIP_MIRROR="{{ pyenv_python_build_skip_mirror }}"
+{% endif %}
+{% if pyenv_python_build_skip_homebrew is defined %}
+export PYTHON_BUILD_SKIP_HOMEBREW="{{ pyenv_python_build_skip_homebrew }}"
+{% endif %}
+{% if pyenv_python_build_root is defined %}
+export PYTHON_BUILD_ROOT="{{ pyenv_python_build_root }}"
+{% endif %}
+{% if pyenv_python_build_definitions is defined %}
+export PYTHON_BUILD_DEFINITIONS="{{ pyenv_python_build_definitions }}"
+{% endif %}
+{% if pyenv_python_configure_opts is defined %}
+export PYTHON_CONFIGURE_OPTS="{{ pyenv_python_configure_opts }}"
+{% endif %}
+{% if pyenv_python_cflags is defined %}
+export PYTHON_CFLAGS="{{ pyenv_python_cflags }}"
+{% endif %}
+{% if pyenv_python_make_opts is defined %}
+export PYTHON_MAKE_OPTS="{{ pyenv_python_make_opts }}"
+{% endif %}
+{% if pyenv_python_make_install_opts is defined %}
+export PYTHON_MAKE_INSTALL_OPTS="{{ pyenv_python_make_install_opts }}"
+{% endif %}
+{% if pyenv_configure_opts is defined %}
+export CONFIGURE_OPTS="{{ pyenv_configure_opts }}"
+{% endif %}
+{% if pyenv_cc is defined %}
+export CC="{{ pyenv_cc }}"
+{% endif %}
+{% if pyenv_make is defined %}
+export MAKE="{{ pyenv_make }}"
+{% endif %}
+{% if pyenv_make_opts is defined %}
+export MAKE_OPTS="{{ pyenv_make_opts }}"
+{% endif %}
+{% if pyenv_make_install_opts is defined %}
+export MAKE_INSTALL_OPTS="{{ pyenv_make_install_opts }}"
+{% endif %}
+{% if pyenv_profile_task is defined %}
+export PROFILE_TASK="{{ pyenv_profile_task }}"
+{% endif %}
+[ -f "{{ pyenvrc_path }}/.pyenvrc.custom" ] && source "{{ pyenvrc_path }}/.pyenvrc.custom"
 eval "$(pyenv init --path)"
-eval "$(pyenv init - {{ pyenv_init_options}})"
+eval "$(pyenv init - {{ pyenv_init_options }})"
